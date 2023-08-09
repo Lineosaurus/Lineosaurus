@@ -1,0 +1,12 @@
+{
+    "workspace": {
+        "urls": [
+            "https://github.com/Lineosaurus/test_data_dummyrepo1.git",
+            "https://github.com/Lineosaurus/test_data_dummypythonrepo.git",
+            "https://github.com/Lineosaurus/test_data_dummyasmrepo.git"
+        ]
+    },
+    "options": {
+        "header": null
+    }
+}

@@ -12,7 +12,7 @@ prefer-extension: true
 ----------------
 
 124,211  lines of .py files   33%  ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆
-5124     lines of .txt files  11%  ▆▆▆▆▆▆▆▆▆▆▆▆▆
+5,124    lines of .txt files  11%  ▆▆▆▆▆▆▆▆▆▆▆▆▆
 221      lines of .js files    8%  ▆▆▆▆▆▆▆▆
 21       lines of .md files    3%  ▆▆
 
@@ -21,7 +21,7 @@ prefer-extension: false
 ----------------
 
 124,211  lines of Python      33%  ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆
-5124     lines of Plain Text  11%  ▆▆▆▆▆▆▆▆▆▆▆▆▆
+5,124    lines of Plain Text  11%  ▆▆▆▆▆▆▆▆▆▆▆▆▆
 221      lines of JavaScript   8%  ▆▆▆▆▆▆▆▆
 21       lines of Markdown     3%  ▆▆
 """

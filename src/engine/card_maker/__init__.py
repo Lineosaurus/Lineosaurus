@@ -19,7 +19,8 @@ def card_maker(title, entries, align, lang):
     for entry in entries:
         line = []
         for ele_idx, ele in enumerate(entry):  # ele: element
-            spaces = " "*(lens[ele_idx] - len(ele))
+            spaces = ' '*(lens[ele_idx] - len(ele))
+            if (ele_idx == (ncol-1)) and (align[ele_idx] == -1): spaces = ''  # No need for spaces in the last column (if the align = -1)
             if align[ele_idx] == -1: line.append(ele + spaces)
             if align[ele_idx] ==  1: line.append(spaces + ele)
         lines.append('  '.join(line))  # 2 spaces between columns
