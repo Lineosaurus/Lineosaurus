@@ -10,19 +10,19 @@ class Vars:
     _DATE_ = TimeFmt.date()
     _OWNER_ = os.environ['GITHUB_ACTOR']
 
-    ## Total lines of code across all repositories, regardless only-type and ignore-type.
+    ## Total lines of code across all repositories (regardless only-type and ignore-type)
     _LINES_ = ''
     _LINESFMT_ = ''
     _LINESROUND_ = ''
     _LINESAPPROX_ = ''
 
-    ## Total characters across all repositories, regardless only-type and ignore-type.
+    ## Total characters across all repositories (regardless only-type and ignore-type)
     _CHARS_ = ''
     _CHARSFMT_ = ''
     _CHARSROUND_ = ''
     _CHARSAPPROX_ = ''
 
-    ## Total lines of code across all repositories, following only-type and ignore-type.
+    ## Total lines of code across all repositories (following only-type and ignore-type)
     _LINE_ = ''
     _LINEFMT_ = ''
     _LINEROUND_ = ''

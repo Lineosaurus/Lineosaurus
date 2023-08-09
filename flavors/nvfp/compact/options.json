@@ -1,0 +1,6 @@
+{
+    "header": "assets/Lineosaurus-header.md",
+    "footer": "*last update: _DATE_ — _CREDIT_*",
+    "show-credit": false,
+    "card-order": ["line"]
+}

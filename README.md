@@ -20,7 +20,11 @@ name: Lineosaurus
 on:
   schedule:
     - cron: '0 0 * * *'  # Runs daily
-  workflow_dispatch:  # Update manually via 'Actions' tab
+  workflow_dispatch:     # Update manually via 'Actions' tab
+
+  ## The line `push:` below is for immediately updating your README.md for its first time.
+  ## After you've seen the update, you may want to comment/delete it out.
+  push:
 
 jobs:
   run:
