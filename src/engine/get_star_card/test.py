@@ -14,6 +14,9 @@ PACK = {
 TOTAL = 2055
 
 
+## Note, '⭐️' counts as 2 chars in length
+
+
 class Test__writer(unittest.TestCase):
 
     def test_num_shown(self):
@@ -22,9 +25,6 @@ class Test__writer(unittest.TestCase):
         pb2 = progress_bars_alternating(500, TOTAL, '⭐️', '🌟', PB_LEN)
         pb3 = progress_bars_alternating(50, TOTAL, '⭐️', '🌟', PB_LEN)
         pb4 = progress_bars_alternating(5, TOTAL, '⭐️', '🌟', PB_LEN)
-        spaces2 = ' '*(len(pb1) - len(pb2))  # Note, '⭐️' counts as 2 chars in length
-        spaces3 = ' '*(len(pb1) - len(pb3))
-        spaces4 = ' '*(len(pb1) - len(pb4))
         
         result = writer(1, False, '', TOTAL, PACK)
         expected = (
@@ -38,8 +38,8 @@ class Test__writer(unittest.TestCase):
         expected = (
             f'```{LANG}\n'
             f'foo-bar-baz  1,500 stargazers  73%  {pb1}\n'
-            f'foo            500 stargazers  24%  {pb2}{spaces2}\n'
-            f'foo-bar         50 stargazers   2%  {pb3}{spaces3}\n'
+            f'foo            500 stargazers  24%  {pb2}\n'
+            f'foo-bar         50 stargazers   2%  {pb3}\n'
             '```'
         )
         self.assertEqual(result, expected)
@@ -48,9 +48,9 @@ class Test__writer(unittest.TestCase):
         expected = (
             f'```{LANG}\n'
             f'foo-bar-baz  1,500 stargazers  73%  {pb1}\n'
-            f'foo            500 stargazers  24%  {pb2}{spaces2}\n'
-            f'foo-bar         50 stargazers   2%  {pb3}{spaces3}\n'
-            f'bar              5 stargazers   0%  {pb4}{spaces4}\n'
+            f'foo            500 stargazers  24%  {pb2}\n'
+            f'foo-bar         50 stargazers   2%  {pb3}\n'
+            f'bar              5 stargazers   0%  {pb4}\n'
             '```'
         )
         self.assertEqual(result, expected)
