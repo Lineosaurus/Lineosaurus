@@ -29,7 +29,7 @@ def get_options(
     HEADER='',
     FOOTER='',
     CUSTOM_TITLE='',
-    NUM_SHOWN='5',
+    NUM_SHOWN='3',
     SHOW_APPROX='true',
     CARD_TITLES='',
     CARD_ORDER='',
