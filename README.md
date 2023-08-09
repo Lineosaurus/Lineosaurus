@@ -1,11 +1,11 @@
 # Lineosaurus🦕 (under development)
 
-[![Run tests](https://github.com/nvfp/Line-O-Saurus/actions/workflows/run-tests.yml/badge.svg)](https://github.com/nvfp/Line-O-Saurus/actions/workflows/run-tests.yml)
-[![License](https://img.shields.io/github/license/nvfp/Line-O-Saurus)](https://github.com/nvfp/Line-O-Saurus/blob/main/LICENSE)
+[![Run tests](https://github.com/Lineosaurus/Lineosaurus/actions/workflows/run-tests.yml/badge.svg)](https://github.com/Lineosaurus/Lineosaurus/actions/workflows/run-tests.yml)
+[![License](https://img.shields.io/github/license/Lineosaurus/Lineosaurus)](https://github.com/Lineosaurus/Lineosaurus/blob/main/LICENSE)
 
 Count up lines of code, repository sizes, stargazers, character counts across your repositories!
 
-![lineosaurus](https://github.com/nvfp/Line-O-Saurus/blob/main/assets/lineosaurus_h200.jpg?raw=true)
+![lineosaurus](https://github.com/Lineosaurus/Lineosaurus/blob/main/assets/lineosaurus_h200.jpg?raw=true)
 
 
 ## Usage
@@ -28,7 +28,7 @@ jobs:
     permissions:
       contents: write  # For committing
     steps:
-      - uses: nvfp/Line-O-Saurus@v1
+      - uses: Lineosaurus/Lineosaurus@v1
         env:
           GH_TOKEN: ${{ github.token }}  # For GitHub CLI
         with:
@@ -154,4 +154,4 @@ Lineosaurus welcomes and appreciates contributions! Go fork the repo, make chang
 
 ## License
 
-The scripts and documentation in this project are released under the [MIT License](https://github.com/nvfp/Line-O-Saurus/blob/main/LICENSE).
+The scripts and documentation in this project are released under the [MIT License](https://github.com/Lineosaurus/Lineosaurus/blob/main/LICENSE).

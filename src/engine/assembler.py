@@ -1,7 +1,7 @@
 from src.constants import __version__
 
 
-CREDIT = f'Counted by [Lineosaurus v{__version__}](https://github.com/nvfp/Line-O-Saurus)'
+CREDIT = f'Counted by [Lineosaurus v{__version__}](https://github.com/Lineosaurus/Lineosaurus)'
 
 
 def assembler(header, custom_title, cards, footer, show_credit, auto_line_break):
