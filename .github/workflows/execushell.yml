@@ -1,0 +1,29 @@
+# .github/workflows/execushell.yml
+
+name: ExecuShell
+
+on:
+  workflow_dispatch:  # Run manually from 'Actions' tab
+    inputs:
+      dir:
+        description: directory path
+        type: string
+        required: true
+      recursive:
+        description: recursive
+        type: boolean
+        required: false
+        default: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # For committing
+    steps:
+      - uses: scapeville/action-ExecuShell@v1
+        with:
+          dir: ${{ inputs.dir }}
+          git-name: ExecuShell
+          git-email: nicho@scapeville.com
+          recursive: ${{ inputs.recursive }}

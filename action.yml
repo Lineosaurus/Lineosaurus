@@ -1,0 +1,85 @@
+name: Lineosaurus
+description: GitHub profile statistics counter
+author: Nicholas Valentinus
+branding:
+  icon: align-justify
+  color: gray-dark
+
+inputs:
+  git-name:
+    description: 
+    required: true
+  git-email:
+    description: 
+    required: true
+  only-type:
+    description: 
+    default: null  # Note: in YAML, `null` becomes `''` in Python.
+  ignore-type:
+    description: 
+    default: null
+  header:
+    description: 
+    default: null
+  footer:
+    description: 
+    default: null
+  custom-title:
+    description: 
+    default: null
+  num-shown:
+    description: 
+    default: 3
+  show-approx:
+    description: 
+    default: true
+  card-titles:
+    description: 
+    default: null
+  card-order:
+    description: 
+    default: null
+  prefer-extension:
+    description: 
+    default: true
+  auto-line-break:
+    description: 
+    default: true
+  show-credit:
+    description: 
+    default: true
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - run: echo "::group::pip" && pip install -r $GITHUB_ACTION_PATH/requirements.txt && echo "::endgroup::"
+      shell: bash
+    - run: $GITHUB_ACTION_PATH/src/cloning.sh
+      shell: bash
+    - uses: actions/checkout@v3
+    - run: python $GITHUB_ACTION_PATH/src run
+      shell: bash
+      env:
+        ONLY_TYPE: ${{ inputs.only-type }}
+        IGNORE_TYPE: ${{ inputs.ignore-type }}
+        HEADER: ${{ inputs.header }}
+        FOOTER: ${{ inputs.footer }}
+        CUSTOM_TITLE: ${{ inputs.custom-title }}
+        NUM_SHOWN: ${{ inputs.num-shown }}
+        SHOW_APPROX: ${{ inputs.show-approx }}
+        CARD_TITLES: ${{ inputs.card-titles }}
+        CARD_ORDER: ${{ inputs.card-order }}
+        PREFER_EXTENSION: ${{ inputs.prefer-extension }}
+        AUTO_LINE_BREAK: ${{ inputs.auto-line-break }}
+        SHOW_CREDIT: ${{ inputs.show-credit }}
+    - run: echo "time=$(date +'%Y %b %e, %l:%M %p')" >> $GITHUB_OUTPUT
+      shell: bash
+      id: time
+    - uses: scapeville/action-git-add-all-then-commit-then-push@v1
+      with:
+        name: ${{ inputs.git-name }}
+        email: ${{ inputs.git-email }}
+        msg: "Lineosaurus on ${{ steps.time.outputs.time }}"
