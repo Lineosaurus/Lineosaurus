@@ -5,11 +5,13 @@ branding:
   icon: align-justify
   color: gray-dark
 
-## Dev note: these default values are better not changed.
+## Dev note: These default values are better not changed.
 ##           If changes are needed, remember to propagate the changes in:
 ##           - README.md
 ##           - src/get_options/get_options.py
 ##           - src/emulator.py
+##
+## Extra note: changing default values may break tests
 inputs:
   git-name:
     description: 
