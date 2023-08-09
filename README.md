@@ -151,9 +151,9 @@ variable        | description | example
   ```
 
 
-<!-- ## Contributing
+## Contributing
 
-Lineosaurus welcomes and appreciates contributions! Go fork the repo, make changes, create a pull request, and explain the effects. All contributions will be reviewed, but note that not all might make it in. Also, it might take a while, so please be patient. Thanks for understanding. -->
+Lineosaurus welcomes and appreciates contributions. All contributions will be reviewed, please explain what changes you've made and the effects.
 
 
 ## License
