@@ -29,6 +29,7 @@ DEFAULT = {
 
 def emulator(setup):
     eL.info(f'Running emulator v{__version__}.')
+    eL.debug(f'setup: {repr(setup)}.')
 
     ## Check and read
     setup_pth = os.path.join(os.environ['GITHUB_WORKSPACE'], os.path.normpath(setup))
