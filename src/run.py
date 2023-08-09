@@ -43,6 +43,7 @@ def run():
     eL.debug(f'PREFER_EXTENSION: {repr(os.environ["PREFER_EXTENSION"])}.')
     eL.debug(f'AUTO_LINE_BREAK : {repr(os.environ["AUTO_LINE_BREAK"])}.')
     eL.debug(f'SHOW_CREDIT . . : {repr(os.environ["SHOW_CREDIT"])}.')
+    eL.endgroup()
 
     OPTIONS = get_options(
         os.environ['ONLY_TYPE'],
@@ -73,6 +74,7 @@ def run():
     eL.debug(f'OPTIONS.PREFER_EXTENSION: {repr(OPTIONS.PREFER_EXTENSION)}.')
     eL.debug(f'OPTIONS.AUTO_LINE_BREAK : {repr(OPTIONS.AUTO_LINE_BREAK)}.')
     eL.debug(f'OPTIONS.SHOW_CREDIT . . : {repr(OPTIONS.SHOW_CREDIT)}.')
+    eL.endgroup()
 
     README = get_readme(REPO_ROOT_DIR)
     TEXT = engine(WORKSPACE_DIR, OPTIONS)
