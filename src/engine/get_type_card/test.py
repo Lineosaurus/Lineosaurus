@@ -28,6 +28,7 @@ class Test__writer(unittest.TestCase):
 
         result = writer(NUM_SHOWN, SHOW_APPROX, PREFER_EXTENSION, TITLE, LINE_PER_EXT)
         expected = (
+            f'{TITLE}\n\n'
             f'```{LANG}\n'
             f'1,500  lines of Python  73%  {PB1}\n'
             f'500    lines of CSS     24%  {PB2}\n'
@@ -41,6 +42,7 @@ class Test__writer(unittest.TestCase):
         PREFER_EXTENSION = True
         result = writer(NUM_SHOWN, SHOW_APPROX, PREFER_EXTENSION, TITLE, LINE_PER_EXT)
         expected = (
+            f'{TITLE}\n\n'
             f'```{LANG}\n'
             f'1,500  lines of .py files     73%  {PB1}\n'
             f'500    lines of .css files    24%  {PB2}\n'
