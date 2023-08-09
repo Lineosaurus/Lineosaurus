@@ -16,8 +16,6 @@ TOTAL = 2055
 PB1 = progress_bars(1500, TOTAL, PB_CHAR, PB_LEN)
 PB2 = progress_bars(500, TOTAL, PB_CHAR, PB_LEN)
 PB3 = progress_bars(50, TOTAL, PB_CHAR, PB_LEN)
-SPACES2 = ' '*(len(PB1) - len(PB2))
-SPACES3 = ' '*(len(PB1) - len(PB3))
 
 
 class Test__writer(unittest.TestCase):
@@ -28,8 +26,8 @@ class Test__writer(unittest.TestCase):
         expected = (
             f'```{LANG}\n'
             f'foo-bar-baz  1,500 lines  73%  {PB1}\n'
-            f'foo            500 lines  24%  {PB2}{SPACES2}\n'
-            f'foo-bar         50 lines   2%  {PB3}{SPACES3}\n'
+            f'foo            500 lines  24%  {PB2}\n'
+            f'foo-bar         50 lines   2%  {PB3}\n'
             '```'
         )
         self.assertEqual(result, expected)
@@ -42,8 +40,8 @@ class Test__writer(unittest.TestCase):
             f'{title}\n\n'
             f'```{LANG}\n'
             f'foo-bar-baz  1,500 lines  73%  {PB1}\n'
-            f'foo            500 lines  24%  {PB2}{SPACES2}\n'
-            f'foo-bar         50 lines   2%  {PB3}{SPACES3}\n'
+            f'foo            500 lines  24%  {PB2}\n'
+            f'foo-bar         50 lines   2%  {PB3}\n'
             '```'
         )
         self.assertEqual(result, expected)
