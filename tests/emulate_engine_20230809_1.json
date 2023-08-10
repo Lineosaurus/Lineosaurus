@@ -18,6 +18,6 @@
         "card-order": "line\ntype\nsize\nchar\ncmit\nfile",
         "prefer-extension": "true",
         "auto-line-break": "true",
-        "show-credit": "true"
+        "show-credit": "false"
     }
 }
