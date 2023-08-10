@@ -3,7 +3,10 @@ import os
 import sys
 
 ## Make all dirs under the project's root dir importable
-sys.path.append(os.environ['GITHUB_ACTION_PATH'])
+try:
+    sys.path.append(os.environ['GITHUB_ACTION_PATH'])
+except KeyError:  # During emulation
+    sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 from src.get_clone_urls import get_clone_urls
 from src.run import run
