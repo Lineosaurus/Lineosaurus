@@ -25,6 +25,11 @@ DEFAULT = {
     'auto-line-break': 'true',
     'show-credit': 'true',
 }
+MAP = {
+    None: '',
+    True: 'true',
+    False: 'false',
+}
 
 
 def emulator(setup):
@@ -42,7 +47,9 @@ def emulator(setup):
     setup_options = []
     for option_name, option_default in DEFAULT.items():
         if option_name in setup_json['options']:
-            setup_options.append(setup_json['options'][option_name])
+            val = setup_json['options'][option_name]
+            if val in MAP: val = MAP[val]
+            setup_options.append(str(val))
         else:
             setup_options.append(option_default)
     eL.info(f'setup_options: {setup_options}')
@@ -62,5 +69,7 @@ def emulator(setup):
         eL.error('Something went wrong.')
         shutil.rmtree(workspace_dir)
 
+    eL.group('text')
     print(text)
-    print
+    eL.group('repr(text)')
+    print(repr(text))
