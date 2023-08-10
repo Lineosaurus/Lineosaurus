@@ -10,9 +10,10 @@ Count up lines of code, repository sizes, stargazers, character counts across yo
 
 ## Usage
 
-> Make sure you have README.md at the root of your repository.
+> **Note**
+Make sure you have README.md at the root of your repository.
 
-Copy this file `.github/workflows/lineosaurus.yml` to your repository.
+Copy this file `.github/workflows/lineosaurus.yml` to your `github.com/<YOUR_USERNAME>/<YOUR_USERNAME>` repository.
 
 ```yaml
 name: Lineosaurus
