@@ -70,6 +70,6 @@ def emulator(setup):
         shutil.rmtree(workspace_dir)
 
     eL.group('text')
-    print(text)
+    eL.info(text)
     eL.group('repr(text)')
-    print(repr(text))
+    eL.info(repr(text))
