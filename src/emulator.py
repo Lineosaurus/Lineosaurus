@@ -25,15 +25,25 @@ DEFAULT = {
     'auto-line-break': 'true',
     'show-credit': 'true',
 }
-MAP = {
+MAP = {  # MAP is required because src/get_options/get_options.py args must be in string (currently)
     None: '',
     True: 'true',
     False: 'false',
 }
 
 
-def emulator(setup):
-    eL.info(f'Running emulator v{__version__}.')
+"""
+Human interaction may be needed for integration testing in the case of final rendered text.
+
+The process involves:
+1. First, we perform emulation to get the emulated result from the current engine state.
+2. Next, we approve or disapprove the emulation result.
+3. Once approved, we add the emulation result to the integration tests.
+   We use the `emulation_engine` to check the emulated result and make sure it stays the same.
+"""
+
+
+def emulator_engine(setup):
     eL.debug(f'setup: {repr(setup)}.')
 
     ## Check and read
@@ -59,7 +69,6 @@ def emulator(setup):
         eL.group('Cloning')
         for url in setup_json['workspace']['urls']:
             clone(url, workspace_dir)
-        eL.endgroup()
 
         eL.group('Emulate')
         options = get_options(*setup_options)
@@ -68,6 +77,15 @@ def emulator(setup):
     finally:
         eL.debug('Cleaning up.')
         shutil.rmtree(workspace_dir)
+
+    return text
+
+
+def emulator(setup):
+    """Display the emulated result in the terminal (used in GitHub Actions VM)"""
+    eL.info(f'Running emulator v{__version__}.')
+
+    text = emulator_engine(setup)
 
     eL.group('text')
     eL.info(text)
