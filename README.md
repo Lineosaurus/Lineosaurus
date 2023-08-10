@@ -1,9 +1,9 @@
-# Lineosaurus🦕
+# Lineosaurus
 
 [![Run tests](https://github.com/Lineosaurus/Lineosaurus/actions/workflows/run-tests.yml/badge.svg)](https://github.com/Lineosaurus/Lineosaurus/actions/workflows/run-tests.yml)
 [![License](https://img.shields.io/github/license/Lineosaurus/Lineosaurus)](https://github.com/Lineosaurus/Lineosaurus/blob/main/LICENSE)
 
-Make a card and count up lines of code, repository sizes, stargazers, character counts, and more, all across your repositories!
+🦕Make your card, show it on your GitHub profile readme, count lines of code, repository sizes, stargazers, character counts, and more across all your repositories, and share it with others!🦕
 
 ![lineosaurus](https://github.com/Lineosaurus/Lineosaurus/blob/main/assets/lineosaurus_h200.jpg?raw=true)
 
@@ -138,15 +138,24 @@ jobs:
           flavor: <FLAVOR> by <CREATOR>
 ```
 
-## Flavors
+### flavors
+
+- [compact](https://github.com/Lineosaurus/Lineosaurus/tree/main/flavors/nvfp/compact) by [nvfp](https://github.com/nvfp):
+
+  ```yml
+  flavor: compact by nvfp
+  ingredients: |
+    - banner-path: ./assets/banner.png  # relative to your repo root dir  (optional)
+    - banner-alt : example-repo-banner  # image alt text                  (optional)
+  ```
 
 - compact by [nvfp](https://github.com/nvfp):
 
   ```yml
   flavor: compact by nvfp
   ingredients: |
-    - banner-path: ./assets/banner.png  # relative to your repo root dir (optional)
-    - banner-alt : example-repo-banner  # image alt text (optional)
+    - banner-path: ./assets/banner.png  # relative to your repo root dir  (optional)
+    - banner-alt : example-repo-banner  # image alt text                  (optional)
   ```
 
   *python-dev*
