@@ -22,20 +22,22 @@ Extra note: `foo: '[.txt, .md, .json]'` is invalid.
 """
 
 
-## The default values are given for testing purposes
+## The default values are given for testing purposes.
+## Note that all the `get_options` arguments should be in string.
+## It's inconvenient, but changing it is quite challenging, possibly soon.
 def get_options(
-    ONLY_TYPE='',
-    IGNORE_TYPE='',
-    HEADER='',
-    FOOTER='',
-    CUSTOM_TITLE='',
-    NUM_SHOWN='3',
-    SHOW_APPROX='true',
-    CARD_TITLES='',
-    CARD_ORDER='',
-    PREFER_EXTENSION='true',
-    AUTO_LINE_BREAK='true',
-    SHOW_CREDIT='true',
+    ONLY_TYPE:str='',
+    IGNORE_TYPE:str='',
+    HEADER:str='',
+    FOOTER:str='',
+    CUSTOM_TITLE:str='',
+    NUM_SHOWN:str='3',
+    SHOW_APPROX:str='true',
+    CARD_TITLES:str='',
+    CARD_ORDER:str='',
+    PREFER_EXTENSION:str='true',
+    AUTO_LINE_BREAK:str='true',
+    SHOW_CREDIT:str='true',
 ):
     
     REPO_ROOT_DIR = os.environ['GITHUB_WORKSPACE']
