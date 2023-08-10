@@ -66,7 +66,7 @@ def emulator(setup):
         text = engine(workspace_dir, options)
         eL.endgroup()
     finally:
-        eL.error('Something went wrong.')
+        eL.debug('Cleaning up.')
         shutil.rmtree(workspace_dir)
 
     eL.group('text')
