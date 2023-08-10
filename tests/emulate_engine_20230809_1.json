@@ -15,7 +15,7 @@
         "num-shown": "100",
         "show-approx": "true",
         "card-titles": "line: a\ntype: b\nsize: c\nstat: d\nchar: e\nstar: f\ncmit: g\nfile: h",
-        "card-order": "line\ntype\nsize\nstat\nchar\nstar\ncmit\nfile",
+        "card-order": "line\ntype\nsize\nchar\ncmit\nfile",
         "prefer-extension": "true",
         "auto-line-break": "true",
         "show-credit": "true"
