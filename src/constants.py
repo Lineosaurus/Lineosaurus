@@ -1,6 +1,6 @@
 
 
-__version__ = '1.0'
+__version__ = '1.1'
 
 
 PB_CHAR = '▆'  # Default progress bars character
