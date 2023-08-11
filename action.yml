@@ -56,6 +56,16 @@ inputs:
     description: 
     default: true
 
+  ## 1.1 update
+  flavor:
+    description: 
+    default: null
+    required: false
+  ingredients:
+    description: 
+    default: null
+    required: false
+
 runs:
   using: 'composite'
   steps:
@@ -82,6 +92,8 @@ runs:
         PREFER_EXTENSION: ${{ inputs.prefer-extension }}
         AUTO_LINE_BREAK: ${{ inputs.auto-line-break }}
         SHOW_CREDIT: ${{ inputs.show-credit }}
+        FLAVOR: ${{ inputs.flavor }}
+        INGREDIENTS: ${{ inputs.ingredients }}
     - run: echo "time=$(date +'%Y %b %e, %l:%M %p')" >> $GITHUB_OUTPUT
       shell: bash
       id: time
