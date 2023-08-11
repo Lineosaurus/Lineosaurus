@@ -1,6 +1,8 @@
 import os
 import re
 
+from mykit.ghactions.eLog import eL
+
 from src.constants import CARDS
 from src.get_options.yml_custom_parser import parse_dict, parse_list
 
@@ -39,6 +41,21 @@ def get_options(
     AUTO_LINE_BREAK:str='true',
     SHOW_CREDIT:str='true',
 ):
+    
+    eL.group('get_options')
+    eL.debug(f'ONLY_TYPE: {repr(ONLY_TYPE)}.')
+    eL.debug(f'IGNORE_TYPE: {repr(IGNORE_TYPE)}.')
+    eL.debug(f'HEADER: {repr(HEADER)}.')
+    eL.debug(f'FOOTER: {repr(FOOTER)}.')
+    eL.debug(f'CUSTOM_TITLE: {repr(CUSTOM_TITLE)}.')
+    eL.debug(f'NUM_SHOWN: {repr(NUM_SHOWN)}.')
+    eL.debug(f'SHOW_APPROX: {repr(SHOW_APPROX)}.')
+    eL.debug(f'CARD_TITLES: {repr(CARD_TITLES)}.')
+    eL.debug(f'CARD_ORDER: {repr(CARD_ORDER)}.')
+    eL.debug(f'PREFER_EXTENSION: {repr(PREFER_EXTENSION)}.')
+    eL.debug(f'AUTO_LINE_BREAK: {repr(AUTO_LINE_BREAK)}.')
+    eL.debug(f'SHOW_CREDIT: {repr(SHOW_CREDIT)}.')
+    eL.endgroup()
     
     REPO_ROOT_DIR = os.environ['GITHUB_WORKSPACE']
 

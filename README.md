@@ -1,18 +1,19 @@
-# Lineosaurus🦕 (under development)
+# Lineosaurus
 
 [![Run tests](https://github.com/Lineosaurus/Lineosaurus/actions/workflows/run-tests.yml/badge.svg)](https://github.com/Lineosaurus/Lineosaurus/actions/workflows/run-tests.yml)
 [![License](https://img.shields.io/github/license/Lineosaurus/Lineosaurus)](https://github.com/Lineosaurus/Lineosaurus/blob/main/LICENSE)
 
-Count up lines of code, repository sizes, stargazers, character counts across your repositories!
+🦕Make your card, show it on your GitHub profile readme, count lines of code, repository sizes, stargazers, character counts, and more across all your repositories, and share it with others!🦕
 
 ![lineosaurus](https://github.com/Lineosaurus/Lineosaurus/blob/main/assets/lineosaurus_h200.jpg?raw=true)
 
 
 ## Usage
 
-> Make sure you have README.md at the root of your repository.
+> **Note**
+Make sure you have README.md at the root of your repository.
 
-Copy this file `.github/workflows/lineosaurus.yml` to your repository.
+Copy this file `.github/workflows/lineosaurus.yml` to your `github.com/<YOUR_USERNAME>/<YOUR_USERNAME>` repository.
 
 ```yaml
 name: Lineosaurus
@@ -21,10 +22,6 @@ on:
   schedule:
     - cron: '0 0 * * *'  # Runs daily
   workflow_dispatch:     # Update manually via 'Actions' tab
-
-  ## The line `push:` below is for immediately updating your README.md for its first time.
-  ## After you've seen the update, you may want to comment/delete it out.
-  push:
 
 jobs:
   run:
@@ -86,6 +83,8 @@ option             | description | default | example
 `auto-line-break`  | auto next line after header/footer/etc ends | `true` | 
 `show-credit`      | show credit at the end of the file | `true` | 
 
+[more options...](https://github.com/Lineosaurus/Lineosaurus)
+
 ### Variables
 
 These variables can be used inside `header`, `custom-title`, `card-titles`, and `footer`.
@@ -104,51 +103,59 @@ variable        | description | example
 `_LINEROUND_`   | formatted `_LINE_` | `3,100`
 `_VER_`         | Lineosaurus version | `1.23`
 
-### Variations
+[more variables...](https://github.com/Lineosaurus/Lineosaurus)
 
-- by [nvfp](https://github.com/nvfp):
+## Pick your flavors
 
-  *python-dev*
+Or, for a bit of variety, you can explore these ready-made cards. Take a look and choose your favorite!
+
+<!-- - [Wondering](https://github.com/Lineosaurus/Lineosaurus/tree/main/flavors/Lineosaurus/Wondering) by [Lineosaurus](https://github.com/Lineosaurus/Lineosaurus):
+
   ```yml
-  only-type: '[".txt", ".md", ".json"]'  # don't forget to use double instead of single quotes for JSON list
-  ignore-type: |
-    - .py
-    - .md
-  header: assets/header.md
-  custom-title: "_LINE_ lines of code stretch through _OWNER_'s repositories - last update: _DATE_."
-  show-approx: true
-  card-titles: '{"line": "foo", "star": "bar"}'
-  card-order: '["line", "star"]'
+  flavor: Wondering by Lineosaurus
   ```
 
-  *curious*
+- [friends](https://github.com/Lineosaurus/Lineosaurus/tree/main/flavors/Lineosaurus/friends) by [Lineosaurus](https://github.com/Lineosaurus/Lineosaurus):
+
   ```yml
-  only-type: '[".txt", ".md", ".json"]'  # don't forget to use double instead of single quotes for JSON list
-  ignore-type: |
-    - .py
-    - .md
-  footer: footer.md
-  custom-title: "_LINE_ lines of code stretch through _OWNER_'s repositories - last update: _DATE_."
-  show-approx: true
-  card-titles: |
-    - type: #### Top languages
-    - stat: #### _OWNER_'s statistics
-    - line: #### Lines of code
-    - size: #### Repo sizes
-    - char: #### Number of characters
-    - star: #### Stargazers
-    - cmit: #### Total commits
-    - file: #### Total files
-  card-order: |
-    type
-    stat
-    line
-    size
-    char
-    star
-    cmit
-    file
+  flavor: friends by Lineosaurus
+  ``` -->
+
+- [miniature](https://github.com/Lineosaurus/Lineosaurus/tree/main/flavors/nvfp/miniature) by [nvfp](https://github.com/nvfp):
+
+  ```yml
+  name: Lineosaurus
+
+  on:
+    schedule:
+      - cron: '0 0 * * *'  # Runs daily
+    workflow_dispatch:     # Update manually via 'Actions' tab
+
+  jobs:
+    run:
+      runs-on: ubuntu-latest
+      permissions:
+        contents: write  # For committing
+      steps:
+        - uses: Lineosaurus/Lineosaurus@v1
+          env:
+            GH_TOKEN: ${{ github.token }}  # For GitHub CLI
+          with:
+
+            ## required ##
+
+            git-name: your name
+            git-email: your@email
+
+            ## options ##
+
+            flavor: miniature by nvfp
+            ingredients: |
+                - banner-path: ./assets/banner.png  # relative to your repo root dir  (optional)
+                - banner-alt : example-repo-banner  # image alt text                  (optional)
   ```
+
+[more flavors...](https://github.com/Lineosaurus/Lineosaurus)
 
 
 ## Contributing

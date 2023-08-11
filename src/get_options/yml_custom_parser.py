@@ -86,3 +86,24 @@ def parse_list(raw_str):
         if res is None: raise SyntaxError(f'Failed to parse {repr(raw_str)}.')
         l.append(res.group('val'))
     return l
+
+
+def parse_dict_advance(raw_str):
+    """
+    Similar to `parse_dict`, but designed to handle more complex key-value pair patterns.
+    Made for parsing flavor ingredients. TODO: merge this with `parse_dict`.
+    """
+
+    if '\n' not in raw_str:
+        try:
+            return json.loads(raw_str)
+        except json.decoder.JSONDecodeError:
+            raise SyntaxError(f'Invalid syntax for {repr(raw_str)}.')
+
+    d = {}
+    for line in raw_str.split('\n'):
+        if line == '': continue  # Handle the ending '\n'
+        res = re.search(r'^-?[ ]*(?P<key>.+?):[ ]*(?P<val>.+)$', line)
+        if res is None: raise SyntaxError(f'Failed to parse {repr(raw_str)} at {repr(line)}.')
+        d[res.group('key')] = res.group('val')
+    return d
