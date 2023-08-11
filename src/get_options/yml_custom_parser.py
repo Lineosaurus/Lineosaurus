@@ -104,6 +104,6 @@ def parse_dict_advance(raw_str):
     for line in raw_str.split('\n'):
         if line == '': continue  # Handle the ending '\n'
         res = re.search(r'^-?[ ]*(?P<key>.+?):[ ]*(?P<val>.+)$', line)
-        if res is None: raise SyntaxError(f'Failed to parse {repr(raw_str)}.')
+        if res is None: raise SyntaxError(f'Failed to parse {repr(raw_str)} at {repr(line)}.')
         d[res.group('key')] = res.group('val')
     return d
