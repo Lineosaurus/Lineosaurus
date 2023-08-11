@@ -106,7 +106,7 @@ def run():
             os.environ['SHOW_CREDIT'],
         )
     else:
-        OPTIONS = get_options(*flavor_handler(os.environ['FLAVOR'], os.environ['INGREDIENTS']))
+        OPTIONS = get_options(**flavor_handler(os.environ['FLAVOR'], os.environ['INGREDIENTS']))
 
     ## Debugging purposes
     eL.group('Debug III')

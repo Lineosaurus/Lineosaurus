@@ -42,6 +42,7 @@ def get_options(
     SHOW_CREDIT:str='true',
 ):
     
+    eL.group('get_options')
     eL.debug(f'ONLY_TYPE: {repr(ONLY_TYPE)}.')
     eL.debug(f'IGNORE_TYPE: {repr(IGNORE_TYPE)}.')
     eL.debug(f'HEADER: {repr(HEADER)}.')
@@ -54,6 +55,7 @@ def get_options(
     eL.debug(f'PREFER_EXTENSION: {repr(PREFER_EXTENSION)}.')
     eL.debug(f'AUTO_LINE_BREAK: {repr(AUTO_LINE_BREAK)}.')
     eL.debug(f'SHOW_CREDIT: {repr(SHOW_CREDIT)}.')
+    eL.endgroup()
     
     REPO_ROOT_DIR = os.environ['GITHUB_WORKSPACE']
 
