@@ -34,6 +34,7 @@ class Vars:
     _CMITROUND_ = ''
     _CMITAPPROX_ = ''
 
+    _CREDIT_ = f'Counted by [Lineosaurus v{__version__}](https://github.com/Lineosaurus/Lineosaurus)'
     _VER_ = __version__
 
 
