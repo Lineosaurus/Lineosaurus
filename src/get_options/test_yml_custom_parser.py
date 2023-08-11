@@ -78,7 +78,7 @@ class Test__parse_dict_advance(unittest.TestCase):
 
         ## Passes
 
-        result = parse_dict('- foobar-bazqux: https://foo.com/bar/baz.png\n- abc-xyz: foo bar baz')
+        result = parse_dict_advance('- foobar-bazqux: https://foo.com/bar/baz.png\n- abc-xyz: foo bar baz')
         expected = {'foobar-bazqux': 'https://foo.com/bar/baz.png', 'abc-xyz': 'foo bar baz'}
         self.assertEqual(result, expected)
 
