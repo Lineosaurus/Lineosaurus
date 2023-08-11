@@ -2,6 +2,8 @@ import argparse
 import os
 import sys
 
+from mykit.ghactions.eLog import eL
+
 ## Make all dirs under the project's root dir importable
 try:
     sys.path.append(os.environ['GITHUB_ACTION_PATH'])
@@ -16,6 +18,8 @@ from src.emulator import emulator
 def main():
 
     p = argparse.ArgumentParser()
+    p.add_argument('--log-level', choices=['quiet', 'debug'], default='debug')
+
     s = p.add_subparsers(dest='cmd')
 
     x = s.add_parser('get-clone-urls')
@@ -27,6 +31,9 @@ def main():
     x.add_argument('setup')
 
     args = p.parse_args()
+
+    eL.set_level(args.log_level)
+
     if args.cmd == 'get-clone-urls':
         print(' '.join(get_clone_urls(args.raw)))  # Output the result to the shell
     elif args.cmd == 'run':
