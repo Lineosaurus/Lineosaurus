@@ -107,7 +107,7 @@ variable        | description | example
 
 ## Pick your flavors
 
-copy this
+Or, for a bit of variety, you can explore these ready-made cards. Take a look and choose your favorite!
 
 ```yaml
 name: Lineosaurus
@@ -140,64 +140,25 @@ jobs:
 
 ### flavors
 
-- [compact](https://github.com/Lineosaurus/Lineosaurus/tree/main/flavors/nvfp/compact) by [nvfp](https://github.com/nvfp):
+- [Wondering](https://github.com/Lineosaurus/Lineosaurus/tree/main/flavors/Lineosaurus/Wondering) by [Lineosaurus](https://github.com/Lineosaurus/Lineosaurus):
 
   ```yml
-  flavor: compact by nvfp
+  flavor: Wondering by Lineosaurus
+  ```
+
+- [friends](https://github.com/Lineosaurus/Lineosaurus/tree/main/flavors/Lineosaurus/friends) by [Lineosaurus](https://github.com/Lineosaurus/Lineosaurus):
+
+  ```yml
+  flavor: friends by Lineosaurus
+  ```
+
+- [miniature](https://github.com/Lineosaurus/Lineosaurus/tree/main/flavors/nvfp/miniature) by [nvfp](https://github.com/nvfp):
+
+  ```yml
+  flavor: miniature by nvfp
   ingredients: |
     - banner-path: ./assets/banner.png  # relative to your repo root dir  (optional)
     - banner-alt : example-repo-banner  # image alt text                  (optional)
-  ```
-
-- compact by [nvfp](https://github.com/nvfp):
-
-  ```yml
-  flavor: compact by nvfp
-  ingredients: |
-    - banner-path: ./assets/banner.png  # relative to your repo root dir  (optional)
-    - banner-alt : example-repo-banner  # image alt text                  (optional)
-  ```
-
-  *python-dev*
-  ```yml
-  only-type: '[".txt", ".md", ".json"]'  # don't forget to use double instead of single quotes for JSON list
-  ignore-type: |
-    - .py
-    - .md
-  header: assets/header.md
-  custom-title: "_LINE_ lines of code stretch through _OWNER_'s repositories - last update: _DATE_."
-  show-approx: true
-  card-titles: '{"line": "foo", "star": "bar"}'
-  card-order: '["line", "star"]'
-  ```
-
-  *curious*
-  ```yml
-  only-type: '[".txt", ".md", ".json"]'  # don't forget to use double instead of single quotes for JSON list
-  ignore-type: |
-    - .py
-    - .md
-  footer: footer.md
-  custom-title: "_LINE_ lines of code stretch through _OWNER_'s repositories - last update: _DATE_."
-  show-approx: true
-  card-titles: |
-    - type: #### Top languages
-    - stat: #### _OWNER_'s statistics
-    - line: #### Lines of code
-    - size: #### Repo sizes
-    - char: #### Number of characters
-    - star: #### Stargazers
-    - cmit: #### Total commits
-    - file: #### Total files
-  card-order: |
-    type
-    stat
-    line
-    size
-    char
-    star
-    cmit
-    file
   ```
 
 [more flavors...](https://github.com/Lineosaurus/Lineosaurus)

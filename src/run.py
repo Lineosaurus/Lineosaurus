@@ -18,6 +18,48 @@ def get_readme(REPO_ROOT_DIR):
     raise FileNotFoundError('README.md not found.')
 
 
+def flavor_handler(flavor, ingredients):
+    ## TODO: refactor this later
+    from src.get_options.yml_custom_parser import parse_dict
+    OPTIONS = {
+        'ONLY_TYPE': '',
+        'IGNORE_TYPE': '',
+        'HEADER': '',
+        'FOOTER': '',
+        'CUSTOM_TITLE': '',
+        'NUM_SHOWN': '3',
+        'SHOW_APPROX': 'true',
+        'CARD_TITLES': '',
+        'CARD_ORDER': '',
+        'PREFER_EXTENSION': 'true',
+        'AUTO_LINE_BREAK': 'true',
+        'SHOW_CREDIT': 'true',
+    }
+    try:
+        _ingredients = parse_dict(ingredients)
+    except SyntaxError:
+        raise AssertionError('Invalid ingredients value.')
+    if type(_ingredients) is not dict:
+        raise AssertionError('Invalid ingredients value.')
+    
+    res = re.match(r'^(?P<flavor_name>\w+) by (?P<author>\w+)$', flavor)
+    if res is None:
+        raise AssertionError('Invalid flavor.')
+    flavor_name = res.group('flavor_name')
+    author = res.group('author')
+
+    import importlib.util
+    def import_func(module_path, func_name):
+        spec = importlib.util.spec_from_file_location("module_name", module_path)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return getattr(module, func_name)
+    
+    func = import_func(os.path.join(os.environ['GITHUB_ACTION_PATH'], 'flavors', author, flavor_name, 'main.py'), 'main')
+    OPTIONS.update(func(**_ingredients))
+    return OPTIONS
+
+
 def run():
     eL.info(f'Lineosaurus v{__version__} is running.')
 
@@ -43,22 +85,27 @@ def run():
     eL.debug(f'PREFER_EXTENSION: {repr(os.environ["PREFER_EXTENSION"])}.')
     eL.debug(f'AUTO_LINE_BREAK : {repr(os.environ["AUTO_LINE_BREAK"])}.')
     eL.debug(f'SHOW_CREDIT . . : {repr(os.environ["SHOW_CREDIT"])}.')
+    eL.debug(f'FLAVOR  . . . . : {repr(os.environ["FLAVOR"])}.')
+    eL.debug(f'INGREDIENTS . . : {repr(os.environ["INGREDIENTS"])}.')
     eL.endgroup()
 
-    OPTIONS = get_options(
-        os.environ['ONLY_TYPE'],
-        os.environ['IGNORE_TYPE'],
-        os.environ['HEADER'],
-        os.environ['FOOTER'],
-        os.environ['CUSTOM_TITLE'],
-        os.environ['NUM_SHOWN'],
-        os.environ['SHOW_APPROX'],
-        os.environ['CARD_TITLES'],
-        os.environ['CARD_ORDER'],
-        os.environ['PREFER_EXTENSION'],
-        os.environ['AUTO_LINE_BREAK'],
-        os.environ['SHOW_CREDIT'],
-    )
+    if os.environ['FLAVOR'] == '':
+        OPTIONS = get_options(
+            os.environ['ONLY_TYPE'],
+            os.environ['IGNORE_TYPE'],
+            os.environ['HEADER'],
+            os.environ['FOOTER'],
+            os.environ['CUSTOM_TITLE'],
+            os.environ['NUM_SHOWN'],
+            os.environ['SHOW_APPROX'],
+            os.environ['CARD_TITLES'],
+            os.environ['CARD_ORDER'],
+            os.environ['PREFER_EXTENSION'],
+            os.environ['AUTO_LINE_BREAK'],
+            os.environ['SHOW_CREDIT'],
+        )
+    else:
+        OPTIONS = get_options(*flavor_handler(os.environ['FLAVOR'], os.environ['INGREDIENTS']))
 
     ## Debugging purposes
     eL.group('Debug III')
