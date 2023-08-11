@@ -7,8 +7,8 @@
         ]
     },
     "options": {
-        "header": "## This a header\n\n## This is also a header",
-        "footer": "### This one is a footer",
+        "header": "_OWNER_'s repos (_LINESROUND_ lines of code, _CMIT_ commits, _CHARSAPPROX_ chars)",
+        "footer": "*last update: _DATE_ - _CREDIT_*",
         "card-order": "cmit\n",
         "show-credit": "false"
     }
