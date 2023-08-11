@@ -57,6 +57,7 @@ def flavor_handler(flavor, ingredients):
     
     func = import_func(os.path.join(os.environ['GITHUB_ACTION_PATH'], 'flavors', author, flavor_name, 'main.py'), 'main')
     OPTIONS.update(func(**_ingredients))
+    eL.debug(f'OPTIONS foo: {OPTIONS}')
     return OPTIONS
 
 
