@@ -20,7 +20,7 @@ def get_readme(REPO_ROOT_DIR):
 
 def flavor_handler(flavor, ingredients):
     ## TODO: refactor this later
-    from src.get_options.yml_custom_parser import parse_dict
+    from src.get_options.yml_custom_parser import parse_dict_advance
     OPTIONS = {
         'ONLY_TYPE': '',
         'IGNORE_TYPE': '',
@@ -36,7 +36,7 @@ def flavor_handler(flavor, ingredients):
         'SHOW_CREDIT': 'true',
     }
     try:
-        _ingredients = parse_dict(ingredients)
+        _ingredients = parse_dict_advance(ingredients)
     except SyntaxError:
         raise AssertionError('Invalid ingredients value.')
     if type(_ingredients) is not dict:
