@@ -109,38 +109,7 @@ variable        | description | example
 
 Or, for a bit of variety, you can explore these ready-made cards. Take a look and choose your favorite!
 
-```yaml
-name: Lineosaurus
-
-on:
-  schedule:
-    - cron: '0 0 * * *'  # Runs daily
-  workflow_dispatch:     # Update manually via 'Actions' tab
-
-jobs:
-  run:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write  # For committing
-    steps:
-      - uses: Lineosaurus/Lineosaurus@v1
-        env:
-          GH_TOKEN: ${{ github.token }}  # For GitHub CLI
-        with:
-
-          ## required ##
-
-          git-name: your name
-          git-email: your@email
-
-          ## options ##
-
-          flavor: <FLAVOR> by <CREATOR>
-```
-
-### flavors
-
-- [Wondering](https://github.com/Lineosaurus/Lineosaurus/tree/main/flavors/Lineosaurus/Wondering) by [Lineosaurus](https://github.com/Lineosaurus/Lineosaurus):
+<!-- - [Wondering](https://github.com/Lineosaurus/Lineosaurus/tree/main/flavors/Lineosaurus/Wondering) by [Lineosaurus](https://github.com/Lineosaurus/Lineosaurus):
 
   ```yml
   flavor: Wondering by Lineosaurus
@@ -150,15 +119,40 @@ jobs:
 
   ```yml
   flavor: friends by Lineosaurus
-  ```
+  ``` -->
 
 - [miniature](https://github.com/Lineosaurus/Lineosaurus/tree/main/flavors/nvfp/miniature) by [nvfp](https://github.com/nvfp):
 
   ```yml
-  flavor: miniature by nvfp
-  ingredients: |
-    - banner-path: ./assets/banner.png  # relative to your repo root dir  (optional)
-    - banner-alt : example-repo-banner  # image alt text                  (optional)
+  name: Lineosaurus
+
+  on:
+    schedule:
+      - cron: '0 0 * * *'  # Runs daily
+    workflow_dispatch:     # Update manually via 'Actions' tab
+
+  jobs:
+    run:
+      runs-on: ubuntu-latest
+      permissions:
+        contents: write  # For committing
+      steps:
+        - uses: Lineosaurus/Lineosaurus@v1
+          env:
+            GH_TOKEN: ${{ github.token }}  # For GitHub CLI
+          with:
+
+            ## required ##
+
+            git-name: your name
+            git-email: your@email
+
+            ## options ##
+
+            flavor: miniature by nvfp
+            ingredients: |
+                - banner-path: ./assets/banner.png  # relative to your repo root dir  (optional)
+                - banner-alt : example-repo-banner  # image alt text                  (optional)
   ```
 
 [more flavors...](https://github.com/Lineosaurus/Lineosaurus)
