@@ -1,12 +1,22 @@
 
 
 def main(banner_path, banner_alt):
-    
-    
+
+    if banner_path != '':
+        header = (
+            f"![{banner_alt}]({banner_path})\n\n"
+            "_OWNER_'s repos (_LINESROUND_ lines of code, _CMIT_ commits, _CHARSAPPROX_ chars)"
+        )
+    else:
+        header = (
+            "_OWNER_'s repos (_LINESROUND_ lines of code, _CMIT_ commits, _CHARSAPPROX_ chars)"
+        )
+
     OPTIONS = {
-        'HEADER': '*last update: _DATE_ - Counted by [Lineosaurus v_VER_](https://github.com/Lineosaurus/Lineosaurus)*',
-        'FOOTER': '*last update: _DATE_ - Counted by [Lineosaurus v_VER_](https://github.com/Lineosaurus/Lineosaurus)*',
-        'CARD_ORDER': 'line\n',
+        'HEADER': header,
+        'FOOTER': '*last update: _DATE_ - _CREDIT_*',
+        'CARD_ORDER': 'cmit\n',
         'SHOW_CREDIT': 'false',
     }
-    header: assets/Lineosaurus-header.md
+
+    return OPTIONS
