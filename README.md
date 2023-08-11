@@ -85,6 +85,23 @@ option             | description | default | example
 
 [more options...](https://github.com/Lineosaurus/Lineosaurus)
 
+### Cards
+
+Use these alongside the `card-titles` and `card-order` options.
+
+card   | description
+---    | ---
+`line` | lines of code per repository
+`type` | lines of code per extension (across entire owner's repositories)
+`size` | file sizes per repository
+`stat` | summary
+`char` | number of characarter per extension
+`star` | number of stargazers per repository
+`cmit` | number of commits per repository
+`file` | number of files per repository
+
+[more cards...](https://github.com/Lineosaurus/Lineosaurus)
+
 ### Variables
 
 These variables can be used inside `header`, `custom-title`, `card-titles`, and `footer`.
