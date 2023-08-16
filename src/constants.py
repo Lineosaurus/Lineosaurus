@@ -23,13 +23,13 @@ CARDS = ['line', 'type', 'size', 'stat', 'char', 'star', 'cmit', 'file']
 NON_TEXT_TYPE = [
 
     ## Images
-    '.jpg', '.jpeg', '.png', '.gif',
+    '.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp', '.tiff', '.ico',
 
     ## Videos
-    '.mp4',
+    '.mp4', '.avi', '.mov', '.mkv', '.wmv', '.flv', '.webm', '.mpeg', '.3gp', '.m4v', '.ogg',
 
     ## Audios
-    '.mp3',
+    '.mp3', '.wav', '.ogg', '.aac', '.flac', '.wma', '.m4a', '.aiff', '.opus', '.mid',
 
     ## .git/
     '.idx', '.pack', '.rev',
