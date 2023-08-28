@@ -175,11 +175,6 @@ Or, for a bit of variety, you can explore these ready-made cards. Take a look an
 [more flavors...](https://github.com/Lineosaurus/Lineosaurus)
 
 
-## Contributing
-
-Lineosaurus welcomes and appreciates contributions. All contributions will be reviewed, please explain what changes you've made and the effects.
-
-
 ## License
 
-The scripts and documentation in this project are released under the [MIT License](https://github.com/Lineosaurus/Lineosaurus/blob/main/LICENSE).
+[MIT](https://github.com/Lineosaurus/Lineosaurus/blob/main/LICENSE)
