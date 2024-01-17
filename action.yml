@@ -1,101 +1,32 @@
-## Dev note: These default values are better not changed.
-##           If changes are needed, remember to propagate the changes in:
-##           - README.md
-##           - src/get_options/get_options.py
-##           - src/emulator.py
-##
-## Extra note: changing default values may break tests
 inputs:
-  git-name:
-    description: 
+  gitname:
+    description: Git name (for committing)
     required: true
-  git-email:
-    description: 
+  gitemail:
+    description: Git email (for committing)
     required: true
-  only-type:
-    description: 
-    default: null  # Note: in YAML, `null` becomes `''` in Python.
-  ignore-type:
-    description: 
-    default: null
-  header:
-    description: 
-    default: null
-  footer:
-    description: 
-    default: null
-  custom-title:
-    description: 
-    default: null
-  num-shown:
-    description: 
-    default: 3
-  show-approx:
-    description: 
-    default: true
-  card-titles:
-    description: 
-    default: null
-  card-order:
-    description: 
-    default: null
-  prefer-extension:
-    description: 
-    default: true
-  auto-line-break:
-    description: 
-    default: true
-  show-credit:
-    description: 
-    default: true
-
-  ## 1.1 update
-  flavor:
-    description: 
-    default: null
+  credit:
+    description: Add a line to display credit to Lino at the end of the README
     required: false
-  ingredients:
-    description: 
-    default: null
-    required: false
+    default: false
 
 runs:
   using: composite
   steps:
+    - uses: actions/checkout@v4
     - uses: actions/setup-python@v4
       with:
         python-version: '3.10'
-    # - run: echo "::group::pip" && pip install -r $GITHUB_ACTION_PATH/requirements.txt && echo "::endgroup::"
-    #   shell: bash
-    # - run: $GITHUB_ACTION_PATH/src/cloning.sh
-    #   shell: bash
-    - uses: actions/checkout@v4
-    # - run: python $GITHUB_ACTION_PATH/lino_core
-      # shell: bash
-    #   env:
-    #     IPT__credit: ${{ inputs.credit }}
-    - run: python $GITHUB_ACTION_PATH/src run
+    
+    - run: python $GITHUB_ACTION_PATH/lino_core
       shell: bash
       env:
-        ONLY_TYPE: ${{ inputs.only-type }}
-        IGNORE_TYPE: ${{ inputs.ignore-type }}
-        HEADER: ${{ inputs.header }}
-        FOOTER: ${{ inputs.footer }}
-        CUSTOM_TITLE: ${{ inputs.custom-title }}
-        NUM_SHOWN: ${{ inputs.num-shown }}
-        SHOW_APPROX: ${{ inputs.show-approx }}
-        CARD_TITLES: ${{ inputs.card-titles }}
-        CARD_ORDER: ${{ inputs.card-order }}
-        PREFER_EXTENSION: ${{ inputs.prefer-extension }}
-        AUTO_LINE_BREAK: ${{ inputs.auto-line-break }}
-        SHOW_CREDIT: ${{ inputs.show-credit }}
-        FLAVOR: ${{ inputs.flavor }}
-        INGREDIENTS: ${{ inputs.ingredients }}
-    # - run: echo "time=$(date +'%Y %b %e, %l:%M %p')" >> $GITHUB_OUTPUT
-    #   shell: bash
-    #   id: time
-    # - uses: scapeville/action-git-add-all-then-commit-then-push@v1
-    #   with:
-    #     name: ${{ inputs.git-name }}
-    #     email: ${{ inputs.git-email }}
-    #     msg: "Lineosaurus on ${{ steps.time.outputs.time }}"
+        IPT__credit: ${{ inputs.credit }}
+
+    ## Save (committing)
+    - run: |
+        git config user.name "${{ inputs.gitname }}"
+        git config user.email "${{ inputs.gitemail }}"
+        # git commit -am "Lineosaurus on $(date +'%Y %b %e, %l:%M %p')"
+        git commit -am "Lineosaurus on $(date -u +'%Y %b %-d, %l:%M %p utc%:z')"
+        git push
