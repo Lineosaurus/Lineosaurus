@@ -177,4 +177,4 @@ Or, for a bit of variety, you can explore these ready-made cards. Take a look an
 
 ## License
 
-[MIT](https://github.com/Lineosaurus/Lineosaurus/blob/main/LICENSE)
+[MIT License](https://en.wikipedia.org/wiki/MIT_License). Everyone is welcome to change, reuse, contribute, sell, share, etc. the code.

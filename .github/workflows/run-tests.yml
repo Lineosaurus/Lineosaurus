@@ -1,16 +1,16 @@
 name: Run tests
 
 on:
-  push:
-    branches:
-      - '*'
-    paths:
-      - 'src/**'
-      - 'flavors/**'
-  pull_request:
-    types:
-      - opened
-      - synchronize
+  # push:
+  #   branches:
+  #     - '*'
+  #   paths:
+  #     - 'src/**'
+  #     - 'flavors/**'
+  # pull_request:
+  #   types:
+  #     - opened
+  #     - synchronize
   workflow_dispatch:
 
 jobs:
