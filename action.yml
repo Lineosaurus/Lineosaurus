@@ -65,11 +65,15 @@ runs:
     - uses: actions/setup-python@v4
       with:
         python-version: '3.10'
-    - run: echo "::group::pip" && pip install -r $GITHUB_ACTION_PATH/requirements.txt && echo "::endgroup::"
-      shell: bash
-    - run: $GITHUB_ACTION_PATH/src/cloning.sh
-      shell: bash
-    - uses: actions/checkout@v3
+    # - run: echo "::group::pip" && pip install -r $GITHUB_ACTION_PATH/requirements.txt && echo "::endgroup::"
+    #   shell: bash
+    # - run: $GITHUB_ACTION_PATH/src/cloning.sh
+    #   shell: bash
+    - uses: actions/checkout@v4
+    # - run: python $GITHUB_ACTION_PATH/lino_core
+      # shell: bash
+    #   env:
+    #     IPT__credit: ${{ inputs.credit }}
     - run: python $GITHUB_ACTION_PATH/src run
       shell: bash
       env:
@@ -87,11 +91,11 @@ runs:
         SHOW_CREDIT: ${{ inputs.show-credit }}
         FLAVOR: ${{ inputs.flavor }}
         INGREDIENTS: ${{ inputs.ingredients }}
-    - run: echo "time=$(date +'%Y %b %e, %l:%M %p')" >> $GITHUB_OUTPUT
-      shell: bash
-      id: time
-    - uses: scapeville/action-git-add-all-then-commit-then-push@v1
-      with:
-        name: ${{ inputs.git-name }}
-        email: ${{ inputs.git-email }}
-        msg: "Lineosaurus on ${{ steps.time.outputs.time }}"
+    # - run: echo "time=$(date +'%Y %b %e, %l:%M %p')" >> $GITHUB_OUTPUT
+    #   shell: bash
+    #   id: time
+    # - uses: scapeville/action-git-add-all-then-commit-then-push@v1
+    #   with:
+    #     name: ${{ inputs.git-name }}
+    #     email: ${{ inputs.git-email }}
+    #     msg: "Lineosaurus on ${{ steps.time.outputs.time }}"
