@@ -175,6 +175,36 @@ Or, for a bit of variety, you can explore these ready-made cards. Take a look an
 [more flavors...](https://github.com/Lineosaurus/Lineosaurus)
 
 
+## Usage
+
+Great, want to show your GitHub stats? let's first copy this file:
+
+`.github/workflows/lineosaurus.yml`:
+
+```yml
+name: Lineosaurus
+on: { schedule: [{ cron: '0 0 * * *' }], workflow_dispatch: null }
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions: { contents: write }
+    steps:
+      - uses: Lineosaurus/Lineosaurus@...  # EDITME: choose the version you prefer, the latest version is recommended.
+        env: { GH_TOKEN: ${{ github.token }} }
+        with:  # v EDIT THESE v
+          git-name: Stats update
+          git-email: foo
+          banner: ./relpath/to/the/image.jpg  # can also be .png/.jpeg/etc. that supported by GitHub
+          include_last_activity: true
+          credit: false
+```
+
+Second, change the value marked with "EDITME" to yours. Also, it's okay to change the file name too, it has no effect.
+
+Read [params' desc here](https://github.com/Lineosaurus/Lineosaurus/blob/main/action.yml).
+
+And that's it! it will update your README.md once a day with your GitHub stats.
+
 ## License
 
 [MIT License](https://en.wikipedia.org/wiki/MIT_License). Everyone is welcome to change, reuse, contribute, sell, share, etc. the code.
