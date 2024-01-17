@@ -1,10 +1,3 @@
-name: Lineosaurus
-description: GitHub profile statistics counter
-author: Nicholas Valentinus
-branding:
-  icon: align-justify
-  color: gray-dark
-
 ## Dev note: These default values are better not changed.
 ##           If changes are needed, remember to propagate the changes in:
 ##           - README.md
@@ -67,7 +60,7 @@ inputs:
     required: false
 
 runs:
-  using: 'composite'
+  using: composite
   steps:
     - uses: actions/setup-python@v4
       with:

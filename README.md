@@ -195,10 +195,13 @@ jobs:
           git-name: Stats update
           git-email: foo
           banner: ./relpath/to/the/image.jpg  # can also be .png/.jpeg/etc. that supported by GitHub
+          include_last_activity: true
           credit: false
 ```
 
 Second, change the value marked with "EDITME" to yours. Also, it's okay to change the file name too, it has no effect.
+
+Read [params' desc here](https://github.com/Lineosaurus/Lineosaurus/blob/main/action.yml).
 
 And that's it! it will update your README.md once a day with your GitHub stats.
 
