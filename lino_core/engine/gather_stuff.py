@@ -51,7 +51,7 @@ def get_lines_of_code(CLONE_DIR):
         pth = os.path.join(CLONE_DIR, repo)
         k2 = the_recursive(pth)
         k += k2
-        print(f"DEBUG: {repo}'s LOC: {k2}.")
+        print(f"DEBUG: lines of code ({repo}): {k2}")
     return k
 
 def get_nCommits(CLONE_DIR):
@@ -60,7 +60,7 @@ def get_nCommits(CLONE_DIR):
         pth = os.path.join(CLONE_DIR, repo)
         k2 = int(subprocess.run(['git', 'rev-list', '--count', 'HEAD'], cwd=pth, stdout=subprocess.PIPE, text=True, check=True).stdout.strip())
         k += k2
-        print(f"DEBUG: {repo}'s nCommits: {k2}.")
+        print(f"DEBUG: nCommits ({repo}): {k2}")
     return k
 
 def get_nChars(CLONE_DIR):
@@ -79,7 +79,7 @@ def get_nChars(CLONE_DIR):
         pth = os.path.join(CLONE_DIR, repo)
         k2 = the_recursive(pth)
         k += k2
-        print(f"DEBUG: {repo}'s nChars: {k2}.")
+        print(f"DEBUG: nChars ({repo}): {k2}")
     return k
 
 def get_nCommits_last_week(CLONE_DIR):
@@ -88,7 +88,7 @@ def get_nCommits_last_week(CLONE_DIR):
         pth = os.path.join(CLONE_DIR, repo)
         k2 = int(subprocess.run(['git', 'rev-list', '--count', '--since="1 week ago"', 'HEAD'], stdout=subprocess.PIPE, text=True, check=True, cwd=pth).stdout.strip())
         k += k2
-        print(f"DEBUG: {repo}'s nCommits_last_week: {k2}.")
+        print(f"DEBUG: nCommits_last_week ({repo}): {k2}")
     return k
 
 def get_last_acts(CLONE_DIR, gh_actor):  # get last 3 activities
@@ -96,7 +96,7 @@ def get_last_acts(CLONE_DIR, gh_actor):  # get last 3 activities
     for repo in os.listdir(CLONE_DIR):
         pth = os.path.join(CLONE_DIR, repo)
         result = subprocess.check_output(['git', 'log', '-1', '--format=%cd'], stderr=subprocess.STDOUT, text=True, cwd=pth)
-        print(f"DEBUG: {repo}'s last commit at: {repr(result)}")
+        print(f"DEBUG: last commit at ({repo}): {repr(result)}")
         in_utc_timestamp = int(datetime.strptime(result.strip('\n'), "%a %b %d %H:%M:%S %Y %z").timestamp())
         out[f"{gh_actor}/{repo}"] = in_utc_timestamp
     out = dict(sorted(out.items(), key=lambda x: x[1], reverse=True)[:3])  # pick latest 3

@@ -27,6 +27,18 @@ jobs:
           gitemail: bar
           credit: true
   
+  test_upBranch:  # using the update-branch (reminder: change the branch name below if needed)
+    runs-on: ubuntu-latest
+    # permissions: { contents: write }  # for committing  # NOTE: for testing purposes, comment out this line to not really make the commit.
+    steps:
+      - uses: lineosaurus/lineosaurus@up  # EDITME
+        env:
+          GH_TOKEN: ${{ github.token }}
+        with:
+          nickname: Hello Great
+          gitname: foo
+          gitemail: bar
+  
   test_default:  # just use the required args
     runs-on: ubuntu-latest
     # permissions: { contents: write }  # for committing  # NOTE: for testing purposes, comment out this line to not really make the commit.
