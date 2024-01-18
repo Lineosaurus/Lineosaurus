@@ -40,6 +40,8 @@
 
 import os, sys, subprocess, json
 
+from .engine.update_readme import update_readme
+
 
 def main():
     
@@ -66,6 +68,8 @@ def main():
     print(repo_list)
     clone_urls = [i['url']+'.git' for i in repo_list]
     print(len(clone_urls), clone_urls)
+
+    update_readme()
 
 
 
