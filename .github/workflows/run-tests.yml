@@ -23,3 +23,12 @@ jobs:
           python-version: '3.10' 
       - run: pip install -r requirements.txt
       - run: python -m unittest -v
+
+  # foo:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: linosaurus/linosaurus@main
+  #       with:
+  #         gitname: foo
+  #         gitemail: bar
+  #         nickname: okay 123
