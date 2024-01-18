@@ -57,6 +57,7 @@ def main():
         'root_user': os.environ['GITHUB_WORKSPACE'],
         'root_action': os.environ['GITHUB_ACTION_PATH'],
         'gh_actor': os.environ['GITHUB_ACTOR'],
+        'act_ver': os.environ['GITHUB_REF'],  # the Action version
     }
     for k,v in misc.items(): print(f"DEBUG: (misc constants) {k}: {repr(v)}")
 
@@ -79,3 +80,25 @@ credit-versioning style
 Lino-1.0 lino-v2 lino-main
 Lino(1.0) Lino(main) Lino(v2)
 """
+
+
+
+# NON_TEXT_TYPE = [
+
+#     ## Images
+#     '.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp', '.tiff', '.ico',
+
+#     ## Videos
+#     '.mp4', '.avi', '.mov', '.mkv', '.wmv', '.flv', '.webm', '.mpeg', '.3gp', '.m4v', '.ogg',
+
+#     ## Audios
+#     '.mp3', '.wav', '.ogg', '.aac', '.flac', '.wma', '.m4a', '.aiff', '.opus', '.mid',
+
+#     ## .git/
+#     '.idx', '.pack', '.rev',
+# ]
+# NON_TEXT_FILENAME = [
+
+#     ## .git/
+#     'index',
+# ]
