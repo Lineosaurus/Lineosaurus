@@ -2,18 +2,6 @@
 # from datetime import datetime
 
 
-# def get_random_hello(day):
-#     l = [
-#         f"Wish you an awesome {day}! 🌼",
-#         f"Smile, it's {day}! ☀️",
-#         f"Hey there! Have a great {day}! 🌈",
-#         f"Wishing you an amazing {day}! 🎉",
-#         f"May your {day} be wonderful! 🌸",
-#         f"Have a fantastic {day}! 🌹",
-#         f"Smile, it's a beautiful {day}! 🌺",
-#         f"Keep shining on this {day}! 🌷",
-#     ]
-#     return random.choice(l)
 
 
 # def main(banner_path, banner_alt):
@@ -39,18 +27,18 @@
 
 
 import os, sys, subprocess, json
-sys.path.append(os.environ['GITHUB_ACTION_PATH'])  # make core folder importable
+sys.path.append(os.environ['GITHUB_ACTION_PATH'])  # make the needed folders importable
+from .engine.gather_stuff import gather_stuff
 from .engine.update_readme import update_readme
-
 
 def main():
     
     ## Inputs
     ipts = {
         'nickname': os.environ['IPT__nickname'],
-        'banner': os.environ['IPT__banner'],
-        'include_last_activity': os.environ['IPT__include_last_activity'],
-        'credit': os.environ['IPT__credit'],
+        'banner': os.environ['IPT__banner'] if (os.environ['IPT__banner'] != '') else None,
+        'include_last_activity': True if (os.environ['IPT__include_last_activity'] == 'true') else False,
+        'credit': True if (os.environ['IPT__credit'] == 'true') else False,
     }
     for k,v in ipts.items(): print(f"DEBUG: (inputs) {k}: {repr(v)}")
 
@@ -63,27 +51,33 @@ def main():
     }
     for k,v in misc.items(): print(f"DEBUG: (misc constants) {k}: {repr(v)}")
 
-    result = subprocess.run(f"gh repo list {misc['gh_actor']} --visibility public --json url", stdout=subprocess.PIPE, shell=True, text=True)
-    repo_list = json.loads(result.stdout)
-    print(repo_list)
-    clone_urls = [i['url']+'.git' for i in repo_list]
-    print(len(clone_urls), clone_urls)
+    # result = subprocess.run(f"gh repo list {misc['gh_actor']} --visibility public --json url", stdout=subprocess.PIPE, shell=True, text=True)
+    # repo_list = json.loads(result.stdout)
+    # print(repo_list)
+    # clone_urls = [i['url']+'.git' for i in repo_list]
+    # print(len(clone_urls), clone_urls)
 
-    update_readme()
+    needed = gather_stuff(
+        root_user=misc['root_user'],
+        gh_actor=misc['gh_actor'],
+    )
 
-
+    update_readme(
+        banner_pth=ipts['banner'],
+        gh_actor=misc['gh_actor'],
+        lines_of_code=12412130,
+        include_last_activity=ipts['include_last_activity'],
+        nickname=ipts['nickname'],
+        nCommits_last_week=3112412,
+        lino_ver=misc['act_ver'],
+        readme_pth=os.path.join(misc['root_user'], 'README.md'),
+        include_credit=ipts['credit'],
+    )
 
 
 if __name__ == '__main__':
     main()
 
-
-
-"""
-credit-versioning style
-Lino-1.0 lino-v2 lino-main
-Lino(1.0) Lino(main) Lino(v2)
-"""
 
 
 

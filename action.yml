@@ -3,7 +3,7 @@ inputs:
     description: s
     required: true
   banner:
-    description: s
+    description: can be a rel. path (relative to root) or URL
     required: false
     default: null  # Note, `null` will be evaluated to an empty string by Python
   include_last_activity:
