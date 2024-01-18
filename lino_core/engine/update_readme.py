@@ -54,7 +54,7 @@ def update_readme(
 
     if include_last_activity:
         act_list = []
-        for name, ts in last_acts:
+        for name, ts in last_acts.items():
             d1 = datetime.fromtimestamp(ts).astimezone().strftime(random.choice(['%A, %b %-d, %Y, ', '%A, ', '%B %-d, ']))
             d2 = datetime.fromtimestamp(ts).astimezone().strftime(f"%I:%M%p{random.choice([' utc%z', ''])}").lstrip('0')
             # act_list.append(f"{name} ({datetime.fromtimestamp(ts).astimezone().strftime('%A, %b %d, %Y, %I:%M%p utc%z')})")
