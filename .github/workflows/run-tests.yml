@@ -1,34 +1,34 @@
 name: Run tests
 
 on:
-  # push:
-  #   branches:
-  #     - '*'
-  #   paths:
-  #     - 'src/**'
-  #     - 'flavors/**'
-  # pull_request:
-  #   types:
-  #     - opened
-  #     - synchronize
+  push:
+    branches:
+      - '*'
+    # paths:
+    #   - 'src/**'
+    #   - 'flavors/**'
+  pull_request:
+    types:
+      - opened
+      - synchronize
   workflow_dispatch:
 
 jobs:
-  run:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.10' 
-      - run: pip install -r requirements.txt
-      - run: python -m unittest -v
-
-  # foo:
+  # run:
   #   runs-on: ubuntu-latest
   #   steps:
-  #     - uses: linosaurus/linosaurus@main
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-python@v4
   #       with:
-  #         gitname: foo
-  #         gitemail: bar
-  #         nickname: okay 123
+  #         python-version: '3.10' 
+  #     - run: pip install -r requirements.txt
+  #     - run: python -m unittest -v
+
+  foo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: linosaurus/linosaurus@main
+        with:
+          gitname: foo
+          gitemail: bar
+          nickname: okay 123
