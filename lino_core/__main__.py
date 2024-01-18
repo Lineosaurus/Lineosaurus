@@ -61,7 +61,8 @@ def main():
     }
     for k,v in misc.items(): print(f"DEBUG: (misc constants) {k}: {repr(v)}")
     print('-------------------------------------')
-    print(json.dumps(os.environ, indent=4))
+    for k,v in os.environ.items():
+        print(f"{k}: >> {v} <<")
     print('-------------------------------------')
 
     result = subprocess.run(f"gh repo list {misc['gh_actor']} --visibility public --json url", stdout=subprocess.PIPE, shell=True, text=True)
