@@ -39,7 +39,7 @@
 
 
 import os, sys, subprocess, json
-
+sys.path.append(os.environ['GITHUB_ACTION_PATH'])  # make core folder importable
 from .engine.update_readme import update_readme
 
 
