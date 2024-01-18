@@ -57,9 +57,12 @@ def main():
         'root_user': os.environ['GITHUB_WORKSPACE'],
         'root_action': os.environ['GITHUB_ACTION_PATH'],
         'gh_actor': os.environ['GITHUB_ACTOR'],
-        'act_ver': os.environ['ACTION_REF'],  # the Action version
+        # 'act_ver': os.environ['ACTION_REF'],  # the Action version
     }
     for k,v in misc.items(): print(f"DEBUG: (misc constants) {k}: {repr(v)}")
+    print('-------------------------------------')
+    print(json.dumps(os.environ, indent=4))
+    print('-------------------------------------')
 
     result = subprocess.run(f"gh repo list {misc['gh_actor']} --visibility public --json url", stdout=subprocess.PIPE, shell=True, text=True)
     repo_list = json.loads(result.stdout)
