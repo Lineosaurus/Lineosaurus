@@ -50,7 +50,7 @@ def get_lines_of_code(CLONE_DIR):
             ipth = os.path.join(dir_pth, i)
             if os.path.isfile(ipth):
                 if i.lower().endswith(tuple(CANT_COUNT)) or (i in CANT_COUNT_NAME): continue
-                with open(ipth, 'r') as f: n += f.read().split('\n')
+                with open(ipth, 'r') as f: n += len(f.read().split('\n'))
             elif os.path.isdir(ipth): n += the_recursive(ipth)
             else: raise AssertionError(f"Unknown: {repr(ipth)}.")
         return n
