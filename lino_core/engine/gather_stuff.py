@@ -1,4 +1,5 @@
 import os, subprocess, json
+from datetime import datetime
 
 
 CANT_COUNT = [  # cant count lines of code for these files' types. cases dont matter (use lowercase).  TODO: add more types if needed
@@ -100,12 +101,16 @@ def get_nCommits_last_week(CLONE_DIR):
         print(f"DEBUG: {repo}'s nCommits_last_week: {k2}.")
     return k
 
-def get_last_acts(CLONE_DIR):
+def get_last_acts(CLONE_DIR, gh_actor):  # get last 3 activities
     out = {}
     for repo in os.listdir(CLONE_DIR):
         pth = os.path.join(CLONE_DIR, repo)
         result = subprocess.check_output(['git', 'log', '-1', '--format=%cd'], stderr=subprocess.STDOUT, text=True, cwd=pth)
-        print(f"DEBUG: {repo}'s last commit time: {result}.")
+        print(f"DEBUG: repr(result): {repr(result)}")
+        in_utc_timestamp = int(datetime.strptime(result.strip('\n'), "%a %b %d %H:%M:%S %Y %z").timestamp())
+        out[f"{gh_actor}/{repo}"] = in_utc_timestamp
+        # print(f"DEBUG: {repo}'s last commit time: {result}.")
+    out = dict(sorted(out.items(), key=lambda x: x[1], reverse=True)[:3])  # pick latest 3
     return out
 
 def gather_stuff(root_user, gh_actor):
@@ -127,6 +132,6 @@ def gather_stuff(root_user, gh_actor):
     out['nCommits'] = get_nCommits(CLONE_DIR)
     out['nChars'] = get_nChars(CLONE_DIR)
     out['nCommits_last_week'] = get_nCommits_last_week(CLONE_DIR)
-    out['last_acts'] = get_last_acts(CLONE_DIR)
+    out['last_acts'] = get_last_acts(CLONE_DIR, gh_actor)
 
     return out
