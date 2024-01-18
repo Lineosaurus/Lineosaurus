@@ -21,10 +21,11 @@ jobs:
       - uses: Lineosaurus/Lineosaurus@...  # EDITME: choose the version you prefer, the latest version is recommended.
         env: { GH_TOKEN: ${{ github.token }} }
         with:  # v EDIT THESE v
+          nickname: Foo bar
           banner: ./relpath/to/the/image.jpg  # can also be .png/.jpeg/etc. that supported by GitHub
           include_last_activity: true
-          gitname: your Git name  # for committing the changes
-          gitemail: your Git email  # for committing the changes
+          gitname: your Git name    # for committing the changes (required)
+          gitemail: your Git email  # for committing the changes (required)
           credit: false
 ```
 

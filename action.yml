@@ -1,4 +1,15 @@
 inputs:
+  nickname:
+    description: s
+    required: true
+  banner:
+    description: s
+    required: false
+    default: null
+  include_last_activity:
+    description: s
+    required: false
+    default: false
   gitname:
     description: Git name (for committing)
     required: true
@@ -21,12 +32,15 @@ runs:
     - run: python $GITHUB_ACTION_PATH/lino_core
       shell: bash
       env:
+        IPT__nickname: ${{ inputs.nickname }}
+        IPT__banner: ${{ inputs.banner }}
+        IPT__include_last_activity: ${{ inputs.include_last_activity }}
         IPT__credit: ${{ inputs.credit }}
 
     ## Save (committing)
-    - run: |
-        git config user.name "${{ inputs.gitname }}"
-        git config user.email "${{ inputs.gitemail }}"
-        # git commit -am "Lineosaurus on $(date +'%Y %b %e, %l:%M %p')"
-        git commit -am "Lineosaurus on $(date -u +'%Y %b %-d, %l:%M %p utc%:z')"
-        git push
+    # - run: |
+    #     git config user.name "${{ inputs.gitname }}"
+    #     git config user.email "${{ inputs.gitemail }}"
+    #     # git commit -am "Lineosaurus on $(date +'%Y %b %e, %l:%M %p')"
+    #     git commit -am "Lineosaurus on $(date -u +'%Y %b %-d, %l:%M %p utc%:z')"
+    #     git push
