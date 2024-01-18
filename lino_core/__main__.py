@@ -28,8 +28,8 @@
 
 import os, sys, subprocess, json
 sys.path.append(os.environ['GITHUB_ACTION_PATH'])  # make the needed folders importable
-from .engine.gather_stuff import gather_stuff
-from .engine.update_readme import update_readme
+from lino_core.engine.gather_stuff import gather_stuff
+from lino_core.engine.update_readme import update_readme
 
 def main():
     
