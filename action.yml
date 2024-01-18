@@ -40,6 +40,7 @@ runs:
     - run: |
         echo ${{ github.event.release.tag_name }}
         echo ${{ github.action_ref }}
+      shell: bash
 
     ## Save (committing)
     - run: |
