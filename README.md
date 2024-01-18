@@ -38,7 +38,7 @@ And that's it! it will update your README.md once a day with your GitHub stats.
 
 ## Notes
 
-- Make sure you already have `README.md` at the root of your `github.com/<YOUR_USERNAME>/<YOUR_REPOSITORY>` repository.
+- Make sure you already have `README.md` at the root of your `github.com/NAME/NAME` repository.
 
 ## License
 
