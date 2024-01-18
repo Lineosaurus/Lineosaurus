@@ -38,7 +38,7 @@
 #     return OPTIONS
 
 
-import os, sys, subprocess
+import os, sys, subprocess, json
 
 
 def main():
@@ -57,20 +57,27 @@ def main():
     }
     for k,v in ipts.items(): print(f"DEBUG: (inputs) {k}: {repr(v)}")
 
+    # ROOT_USER = os.environ['GITHUB_WORKSPACE']
+    # ROOT_ACTION = os.environ['GITHUB_ACTION_PATH']
 
-    import json
 
-    GITHUB_ACTOR = os.environ['GITHUB_ACTOR']
+    # GITHUB_ACTOR = os.environ['GITHUB_ACTOR']
+    ## vv better encapsulated
+    misc = {
+        'root_user': os.environ['GITHUB_WORKSPACE'],
+        'root_action': os.environ['GITHUB_ACTION_PATH'],
+        'gh_actor': os.environ['GITHUB_ACTOR'],
+    }
 
-    command = f"gh repo list {GITHUB_ACTOR} --visibility public --json url"
-    result = subprocess.run(command, stdout=subprocess.PIPE, shell=True, text=True)
+    result = subprocess.run(f"gh repo list {misc['gh_actor']} --visibility public --json url", stdout=subprocess.PIPE, shell=True, text=True)
+    repo_list = json.loads(result.stdout)
+    print(repo_list)
 
-    if result.returncode == 0:
-        repo_list = json.loads(result.stdout)
-        for repo in repo_list:
-            print("Repository URL:", repo['url'])
-    else:
-        print("Error running the command:", result.stderr)
+    # if result.returncode == 0:
+    #     for repo in repo_list:
+    #         print("Repository URL:", repo['url'])
+    # else:
+    #     print("Error running the command:", result.stderr)
 
 
 

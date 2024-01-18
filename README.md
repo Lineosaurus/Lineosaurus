@@ -16,10 +16,11 @@ on: { schedule: [{ cron: '0 0 * * *' }], workflow_dispatch: null }
 jobs:
   run:
     runs-on: ubuntu-latest
-    permissions: { contents: write }
+    permissions: { contents: write }  # for committing
     steps:
       - uses: Lineosaurus/Lineosaurus@...  # EDITME: choose the version you prefer, the latest version is recommended.
-        env: { GH_TOKEN: ${{ github.token }} }
+        env:
+          GH_TOKEN: ${{ github.token }}  # for GitHub CLI
         with:  # v EDIT THESE v
           nickname: Foo bar
           banner: ./relpath/to/the/image.jpg  # can also be .png/.jpeg/etc. that supported by GitHub
