@@ -50,7 +50,7 @@ def update_readme(
     if banner_pth is not None:
         text += f"![banner]({banner_pth})\n\n"
 
-    text += f"{gh_actor}'s repos ({lines_of_code:,} lines of code, {nCommits} commits, {nChars} chars)\n\n"
+    text += f"{gh_actor}'s repos ({lines_of_code:,} lines of code, {nCommits:,} commits, {nChars:,} chars)\n\n"
 
     if include_last_activity:
         act_list = []
