@@ -38,9 +38,13 @@ runs:
     #     IPT__credit: ${{ inputs.credit }}
     #     # ACTION_REF: ${{ inputs.credit }}
     - run: |
-        echo ${{ github.event.release.tag_name }}
-        echo ${{ github.action_ref }}
-      shell: bash
+        import os
+        print(f"-{os.environ['xyzzz1']}-")
+        print(f"-{os.environ['xyzzz2']}-")
+      shell: python
+      env:
+        xyzzz1: ${{ github.event.release.tag_name }}
+        xyzzz2: ${{ github.action_ref }}
 
     ## Save (committing)
     - run: |
