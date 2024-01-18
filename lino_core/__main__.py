@@ -18,7 +18,7 @@ def main():
         'root_user': os.environ['GITHUB_WORKSPACE'],
         'root_action': os.environ['GITHUB_ACTION_PATH'],
         'gh_actor': os.environ['GITHUB_ACTOR'],
-        'act_ver': os.environ['GITHUB_WORKFLOW_REF'].split('/')[-1],  # the Action version
+        'act_ver': os.environ['ACTION_REF'],  # the Action version
     }
     for k,v in misc.items(): print(f"DEBUG: (misc constants) {k}: {repr(v)}")
 

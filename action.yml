@@ -36,6 +36,7 @@ runs:
         IPT__banner: ${{ inputs.banner }}
         IPT__include_last_activity: ${{ inputs.include_last_activity }}
         IPT__credit: ${{ inputs.credit }}
+        ACTION_REF: ${{ github.action_ref }}
 
     ## Save (committing)
     - run: |
