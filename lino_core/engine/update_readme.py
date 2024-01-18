@@ -17,6 +17,10 @@ def get_header(day):
     ]
     return random.choice(l)
 
+def LOC_formatter(lines_of_code:int):
+    pass  # 1000 -> 1K, 1234 -> 1.2K, 999->999, etc.
+    ## but, it seems not that readable, so aborted...
+
 def update_readme(
     banner_pth:str|None,
     gh_actor:str,
@@ -55,13 +59,13 @@ def update_readme(
     if include_last_activity:
         act_list = []
         for name, ts in last_acts.items():
-            d1 = datetime.fromtimestamp(ts).astimezone().strftime(random.choice(['%A, %b %-d, %Y, ', '%A, ', '%B %-d, ']))
+            d1 = datetime.fromtimestamp(ts).astimezone().strftime(random.choice(['%a, %b %-d, %Y, ', '%A, ', '%B %-d, ']))
             d2 = datetime.fromtimestamp(ts).astimezone().strftime(f"%I:%M%p{random.choice([' utc%z', ''])}").lstrip('0')
             # act_list.append(f"{name} ({datetime.fromtimestamp(ts).astimezone().strftime('%A, %b %d, %Y, %I:%M%p utc%z')})")
             act_list.append(f"{name} ({d1+d2})")
         text += (
             "```python\n"
-            f"Repos I was working on lately: {', '.join(act_list)}"
+            f"Repos I was working on lately: {', '.join(act_list)}\n"
             "```\n\n"
         )
     
