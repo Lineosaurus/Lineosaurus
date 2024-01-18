@@ -10,6 +10,7 @@ on:
       - synchronize
   workflow_dispatch:
 
+## Note: these tests will fail (because cant do the committing), but it doesn't mean the test itself failed, it's actually passed.
 jobs:
   run:
     runs-on: ubuntu-latest
