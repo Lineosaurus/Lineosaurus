@@ -9,7 +9,7 @@ inputs:
   include_last_activity:
     description: s
     required: false
-    default: false
+    default: false  # will be evaluated to a string 'false', not `True` / `False`
   gitname:
     description: Git name (for committing)
     required: true
