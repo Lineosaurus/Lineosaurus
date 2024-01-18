@@ -1,4 +1,4 @@
-import random
+import random, time
 from datetime import datetime
 
 def get_header(day):
@@ -46,6 +46,7 @@ def update_readme(
             d1 = datetime.fromtimestamp(ts).astimezone().strftime(random.choice(['%a, %b %-d, %Y, ', '%A, ', '%B %-d, ']))
             d2 = datetime.fromtimestamp(ts).astimezone().strftime(f"%I:%M%p{random.choice([' utc%z', ''])}").lstrip('0')
             act_list.append(f"{random.choice([name, name[len(gh_actor)+1:]])}[{d1+d2}]")
+            time.sleep(0.1)  # to make the "randomizer" truly random. idk, if it's really working or not.
         text += (
             "```python\n"
             f"Repos I was working on lately:\n→ {', '.join(act_list)}\n"
@@ -58,13 +59,14 @@ def update_readme(
         + '\n\n'
     )
 
+    footer_time = datetime.now().astimezone().strftime(random.choice(['%Y %b %-d', '%Y %B %-d', '%b %-d, %Y']))
     if include_credit:
         text += (
-            f"<sub>last update: {datetime.now().astimezone().strftime(random.choice(['%Y %b %-d', '%Y %B %-d', '%b %-d, %Y']))} - "
+            f"<sub>last update: {footer_time} - "
             f"Counted by [Lineosaurus({lino_ver})](https://github.com/Lineosaurus/Lineosaurus)</sub>"
         )
     else:
-        text += f"<sub>last update: {datetime.now().astimezone().strftime(random.choice(['%Y %b %-d', '%Y %B %-d', '%b %-d, %Y']))}</sub>"
+        text += f"<sub>last update: {footer_time}</sub>"
 
     print('─'*100)
     print(text)

@@ -1,6 +1,6 @@
 inputs:
   nickname:
-    description: s
+    description: A name to refer to your name or any name.
     required: true
   banner:
     description: can be a rel. path (relative to root) or URL
