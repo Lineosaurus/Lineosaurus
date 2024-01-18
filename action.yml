@@ -43,3 +43,4 @@ runs:
         git config user.email "${{ inputs.gitemail }}"
         git commit -am "Lineosaurus on $(date -u +'%Y %b %-d, %l:%M %p utc%:z')"
         git push
+      shell: bash
