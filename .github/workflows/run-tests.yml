@@ -27,7 +27,7 @@ jobs:
   foo:
     runs-on: ubuntu-latest
     steps:
-      - uses: linosaurus/linosaurus@main
+      - uses: lineosaurus/lineosaurus@main
         with:
           gitname: foo
           gitemail: bar
