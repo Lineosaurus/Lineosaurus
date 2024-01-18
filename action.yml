@@ -29,22 +29,14 @@ runs:
       with:
         python-version: '3.10'
     
-    # - run: python $GITHUB_ACTION_PATH/lino_core
-    #   shell: bash
-    #   env:
-    #     IPT__nickname: ${{ inputs.nickname }}
-    #     IPT__banner: ${{ inputs.banner }}
-    #     IPT__include_last_activity: ${{ inputs.include_last_activity }}
-    #     IPT__credit: ${{ inputs.credit }}
-    #     # ACTION_REF: ${{ inputs.credit }}
-    - run: |
-        import os
-        print(f"-{os.environ['xyzzz1']}-")
-        print(f"-{os.environ['xyzzz2']}-")
-      shell: python
+    - run: python $GITHUB_ACTION_PATH/lino_core
+      shell: bash
       env:
-        xyzzz1: ${{ github.event.release.tag_name }}
-        xyzzz2: ${{ github.action_ref }}
+        IPT__nickname: ${{ inputs.nickname }}
+        IPT__banner: ${{ inputs.banner }}
+        IPT__include_last_activity: ${{ inputs.include_last_activity }}
+        IPT__credit: ${{ inputs.credit }}
+        ACTION_REF: ${{ github.action_ref }}
 
     ## Save (committing)
     - run: |
