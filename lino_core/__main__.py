@@ -29,8 +29,14 @@ def main():
     update_readme(
         banner_pth=ipts['banner'],
         gh_actor=misc['gh_actor'],
-        lines_of_code=needed['lines_of_code'], nCommits=needed['nCommits'], nChars=needed['nChars'],
-        include_last_activity=ipts['include_last_activity'], last_acts=needed['last_acts'],
+        
+        lines_of_code=needed['lines_of_code'],
+        nCommits=needed['nCommits'],
+        nChars=needed['nChars'],
+        
+        include_last_activity=ipts['include_last_activity'],
+        last_acts=needed['last_acts'],
+        
         nickname=ipts['nickname'],
         nCommits_last_week=needed['nCommits_last_week'],
         lino_ver=misc['act_ver'],

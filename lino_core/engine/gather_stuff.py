@@ -49,7 +49,6 @@ def get_lines_of_code(CLONE_DIR):
         return n
     for repo in os.listdir(CLONE_DIR):
         pth = os.path.join(CLONE_DIR, repo)
-        print(f"DEBUG: Counting lines of code at {repr(pth)}.")
         k2 = the_recursive(pth)
         k += k2
         print(f"DEBUG: {repo}'s LOC: {k2}.")
@@ -78,7 +77,6 @@ def get_nChars(CLONE_DIR):
         return n
     for repo in os.listdir(CLONE_DIR):
         pth = os.path.join(CLONE_DIR, repo)
-        # print(f"DEBUG: Counting lines of code at {repr(pth)}.")
         k2 = the_recursive(pth)
         k += k2
         print(f"DEBUG: {repo}'s nChars: {k2}.")
@@ -98,10 +96,9 @@ def get_last_acts(CLONE_DIR, gh_actor):  # get last 3 activities
     for repo in os.listdir(CLONE_DIR):
         pth = os.path.join(CLONE_DIR, repo)
         result = subprocess.check_output(['git', 'log', '-1', '--format=%cd'], stderr=subprocess.STDOUT, text=True, cwd=pth)
-        print(f"DEBUG: repr(result): {repr(result)}")
+        print(f"DEBUG: {repo}'s last commit at: {repr(result)}")
         in_utc_timestamp = int(datetime.strptime(result.strip('\n'), "%a %b %d %H:%M:%S %Y %z").timestamp())
         out[f"{gh_actor}/{repo}"] = in_utc_timestamp
-        # print(f"DEBUG: {repo}'s last commit time: {result}.")
     out = dict(sorted(out.items(), key=lambda x: x[1], reverse=True)[:3])  # pick latest 3
     return out
 
