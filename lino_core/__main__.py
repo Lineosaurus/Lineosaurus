@@ -36,3 +36,51 @@
 #     }
 
 #     return OPTIONS
+
+
+import os, sys, subprocess
+
+
+def main():
+    
+    ## Inputs
+    # IPT__nickname = os.environ['IPT__nickname']
+    # IPT__banner = os.environ['IPT__banner']
+    # IPT__include_last_activity = os.environ['IPT__include_last_activity']
+    # IPT__credit = os.environ['IPT__credit']
+    ## vvv better data encapsulation
+    ipts = {
+        'nickname': os.environ['IPT__nickname'],
+        'banner': os.environ['IPT__banner'],
+        'include_last_activity': os.environ['IPT__include_last_activity'],
+        'credit': os.environ['IPT__credit'],
+    }
+    for k,v in ipts.items(): print(f"DEBUG: (inputs) {k}: {repr(v)}")
+
+
+    import json
+
+    GITHUB_ACTOR = os.environ['GITHUB_ACTOR']
+
+    command = f"gh repo list {GITHUB_ACTOR} --visibility public --json url"
+    result = subprocess.run(command, stdout=subprocess.PIPE, shell=True, text=True)
+
+    if result.returncode == 0:
+        repo_list = json.loads(result.stdout)
+        for repo in repo_list:
+            print("Repository URL:", repo['url'])
+    else:
+        print("Error running the command:", result.stderr)
+
+
+
+if __name__ == '__main__':
+    main()
+
+
+
+"""
+credit-versioning style
+Lino-1.0 lino-v2 lino-main
+Lino(1.0) Lino(main) Lino(v2)
+"""
