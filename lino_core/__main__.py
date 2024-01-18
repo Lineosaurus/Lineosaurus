@@ -65,10 +65,10 @@ def main():
     update_readme(
         banner_pth=ipts['banner'],
         gh_actor=misc['gh_actor'],
-        lines_of_code=needed['lines_of_code'], nCommits=12411412, nChars=11535113,
+        lines_of_code=needed['lines_of_code'], nCommits=needed['nCommits'], nChars=needed['nChars'],
         include_last_activity=ipts['include_last_activity'], last_acts={"foo/foo": 12412414124, "foo/bazz": 4153114124, "foo/ar": 113412153151},
         nickname=ipts['nickname'],
-        nCommits_last_week=3112412,
+        nCommits_last_week=needed['nCommits_last_week'],
         lino_ver=misc['act_ver'],
         readme_pth=os.path.join(misc['root_user'], 'README.md'),
         include_credit=ipts['credit'],
