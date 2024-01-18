@@ -1,7 +1,6 @@
 import random
 from datetime import datetime
 
-
 def get_header(day):
     l = [
         f"Wish you an awesome {day}! 🌼",
@@ -17,15 +16,11 @@ def get_header(day):
     ]
     return random.choice(l)
 
-def LOC_formatter(lines_of_code:int):
-    pass  # 1000 -> 1K, 1234 -> 1.2K, 999->999, etc.
-    ## but, it seems not that readable, so aborted...
-
 def update_readme(
     banner_pth:str|None,
     gh_actor:str,
     lines_of_code:int, nCommits:int, nChars:int,
-    include_last_activity:bool, last_acts:dict,  # last_acts is {repo-name: last-commit-timestamp, ...}
+    include_last_activity:bool, last_acts:dict,  # last_acts is {owner/repo-name: last-commit-timestamp, ...}
     nickname:str,
     nCommits_last_week:int,
     lino_ver:str,
@@ -54,16 +49,10 @@ def update_readme(
     
     text += (
         f"{nickname} made {nCommits_last_week} commits in the last week, "
-        # f"{random.choice(['what an awesome!', 'really great!', 'simply amazing!'])}"
         + random.choice(['what an awesome!', 'really great!', 'simply amazing!', 'incredibly impressive!'])
         + '\n\n'
     )
 
-    # text += (
-    #     f"<sub>last update: {datetime.now().astimezone().strftime(random.choice(['%Y %b %-d', '%Y %B %-d', '%b %-d, %Y']))} - "
-    #     f"Counted by [Lineosaurus({lino_ver})](https://github.com/Lineosaurus/Lineosaurus)</sub>"
-    # )
-    ## vvvvv
     if include_credit:
         text += (
             f"<sub>last update: {datetime.now().astimezone().strftime(random.choice(['%Y %b %-d', '%Y %B %-d', '%b %-d, %Y']))} - "

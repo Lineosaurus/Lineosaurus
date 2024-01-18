@@ -1,7 +1,6 @@
 import os, subprocess, json
 from datetime import datetime
 
-
 CANT_COUNT = [  # cant count lines of code for these files' types. cases dont matter (use lowercase).  TODO: add more types if needed
 
     ## Images
@@ -22,14 +21,7 @@ CANT_COUNT_NAME = [  # skip files with names (cases do matter):
     'index',
 ]
 
-
 def clone(gh_actor, CLONE_DIR):
-    # result = subprocess.run(f"gh repo list {gh_actor} --visibility public --json url", stdout=subprocess.PIPE, shell=True, text=True)
-    # repo_list = json.loads(result.stdout)
-    # print(repo_list)
-    # clone_urls = [i['url']+'.git' for i in repo_list]
-    # print(len(clone_urls), clone_urls)
-    ## vvvvvvvvvvv
     urls = [
         i['url']+'.git'
         for i in json.loads(
@@ -116,7 +108,6 @@ def get_last_acts(CLONE_DIR, gh_actor):  # get last 3 activities
 def gather_stuff(root_user, gh_actor):
     out = {}
 
-    # CLONE_DIR = os.path.join(ROOT_USER, '..', '__clone_dir')
     CLONE_DIR = os.path.abspath(os.path.join(root_user, '..', '__clone_dir'))
     print(f"DEBUG: repr(CLONE_DIR): {repr(CLONE_DIR)}")
     
