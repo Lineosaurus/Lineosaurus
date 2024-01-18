@@ -44,11 +44,6 @@ import os, sys, subprocess, json
 def main():
     
     ## Inputs
-    # IPT__nickname = os.environ['IPT__nickname']
-    # IPT__banner = os.environ['IPT__banner']
-    # IPT__include_last_activity = os.environ['IPT__include_last_activity']
-    # IPT__credit = os.environ['IPT__credit']
-    ## vvv better data encapsulation
     ipts = {
         'nickname': os.environ['IPT__nickname'],
         'banner': os.environ['IPT__banner'],
@@ -57,27 +52,21 @@ def main():
     }
     for k,v in ipts.items(): print(f"DEBUG: (inputs) {k}: {repr(v)}")
 
-    # ROOT_USER = os.environ['GITHUB_WORKSPACE']
-    # ROOT_ACTION = os.environ['GITHUB_ACTION_PATH']
-
-
-    # GITHUB_ACTOR = os.environ['GITHUB_ACTOR']
-    ## vv better encapsulated
+    ## various constants
     misc = {
         'root_user': os.environ['GITHUB_WORKSPACE'],
         'root_action': os.environ['GITHUB_ACTION_PATH'],
         'gh_actor': os.environ['GITHUB_ACTOR'],
+        'act_ver': os.environ['GITHUB_REF'],  # the Action version
     }
+    for k,v in misc.items(): print(f"DEBUG: (misc constants) {k}: {repr(v)}")
 
     result = subprocess.run(f"gh repo list {misc['gh_actor']} --visibility public --json url", stdout=subprocess.PIPE, shell=True, text=True)
     repo_list = json.loads(result.stdout)
     print(repo_list)
+    clone_urls = [i['url']+'.git' for i in repo_list]
+    print(len(clone_urls), clone_urls)
 
-    # if result.returncode == 0:
-    #     for repo in repo_list:
-    #         print("Repository URL:", repo['url'])
-    # else:
-    #     print("Error running the command:", result.stderr)
 
 
 
@@ -91,3 +80,25 @@ credit-versioning style
 Lino-1.0 lino-v2 lino-main
 Lino(1.0) Lino(main) Lino(v2)
 """
+
+
+
+# NON_TEXT_TYPE = [
+
+#     ## Images
+#     '.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp', '.tiff', '.ico',
+
+#     ## Videos
+#     '.mp4', '.avi', '.mov', '.mkv', '.wmv', '.flv', '.webm', '.mpeg', '.3gp', '.m4v', '.ogg',
+
+#     ## Audios
+#     '.mp3', '.wav', '.ogg', '.aac', '.flac', '.wma', '.m4a', '.aiff', '.opus', '.mid',
+
+#     ## .git/
+#     '.idx', '.pack', '.rev',
+# ]
+# NON_TEXT_FILENAME = [
+
+#     ## .git/
+#     'index',
+# ]
