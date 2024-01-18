@@ -5,7 +5,7 @@ inputs:
   banner:
     description: s
     required: false
-    default: null
+    default: null  # Note, `null` will be evaluated to an empty string by Python
   include_last_activity:
     description: s
     required: false

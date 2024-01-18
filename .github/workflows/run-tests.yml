@@ -28,6 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: lineosaurus/lineosaurus@main
+        env: { GH_TOKEN: ${{ github.token }} }
         with:
           gitname: foo
           gitemail: bar
