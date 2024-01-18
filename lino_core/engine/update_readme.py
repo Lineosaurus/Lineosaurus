@@ -31,24 +31,7 @@ def update_readme(
     lino_ver:str,
     readme_pth:str,
     include_credit:bool
-):
-    
-#     text = """
-# Hey there! Have a great Thursday! 🌈
-
-# ![banner](https://github.com/nvfp/nvfp/raw/main/assets/banner.jpg)
-
-# nvfp's repos (73,099 lines of code, 3,990 commits, 18,470,386 chars)
-
-# ```python
-# Repos I was working on lately: nvfp/nvfp.github.io (on Monday, Mar 3, 2024, 2:31PM utc+0), nvfp/nvfp.github.io (on Monday, Mar 3, 2024, 2:31PM utc+0), nvfp/nvfp.github.io (on Monday, Mar 3, 2024, 2:31PM utc+0)
-# ```
-
-# NVfp made 3 commits in the last week, what an awesome!
-
-# <sub>last update: 2024 Jan 18 - Counted by [Lineosaurus(1.1)](https://github.com/Lineosaurus/Lineosaurus)</sub>
-# """
-
+):    
     text = get_header(datetime.now().astimezone().strftime('%A')) + '\n\n'
 
     if banner_pth is not None:
