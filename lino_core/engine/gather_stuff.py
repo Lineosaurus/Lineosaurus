@@ -1,7 +1,6 @@
 import os, subprocess, json
 from datetime import datetime
 
-
 CANT_COUNT = [  # cant count lines of code for these files' types. cases dont matter (use lowercase).  TODO: add more types if needed
 
     ## Images
@@ -22,14 +21,7 @@ CANT_COUNT_NAME = [  # skip files with names (cases do matter):
     'index',
 ]
 
-
 def clone(gh_actor, CLONE_DIR):
-    # result = subprocess.run(f"gh repo list {gh_actor} --visibility public --json url", stdout=subprocess.PIPE, shell=True, text=True)
-    # repo_list = json.loads(result.stdout)
-    # print(repo_list)
-    # clone_urls = [i['url']+'.git' for i in repo_list]
-    # print(len(clone_urls), clone_urls)
-    ## vvvvvvvvvvv
     urls = [
         i['url']+'.git'
         for i in json.loads(
@@ -57,7 +49,6 @@ def get_lines_of_code(CLONE_DIR):
         return n
     for repo in os.listdir(CLONE_DIR):
         pth = os.path.join(CLONE_DIR, repo)
-        print(f"DEBUG: Counting lines of code at {repr(pth)}.")
         k2 = the_recursive(pth)
         k += k2
         print(f"DEBUG: {repo}'s LOC: {k2}.")
@@ -86,7 +77,6 @@ def get_nChars(CLONE_DIR):
         return n
     for repo in os.listdir(CLONE_DIR):
         pth = os.path.join(CLONE_DIR, repo)
-        # print(f"DEBUG: Counting lines of code at {repr(pth)}.")
         k2 = the_recursive(pth)
         k += k2
         print(f"DEBUG: {repo}'s nChars: {k2}.")
@@ -106,17 +96,15 @@ def get_last_acts(CLONE_DIR, gh_actor):  # get last 3 activities
     for repo in os.listdir(CLONE_DIR):
         pth = os.path.join(CLONE_DIR, repo)
         result = subprocess.check_output(['git', 'log', '-1', '--format=%cd'], stderr=subprocess.STDOUT, text=True, cwd=pth)
-        print(f"DEBUG: repr(result): {repr(result)}")
+        print(f"DEBUG: {repo}'s last commit at: {repr(result)}")
         in_utc_timestamp = int(datetime.strptime(result.strip('\n'), "%a %b %d %H:%M:%S %Y %z").timestamp())
         out[f"{gh_actor}/{repo}"] = in_utc_timestamp
-        # print(f"DEBUG: {repo}'s last commit time: {result}.")
     out = dict(sorted(out.items(), key=lambda x: x[1], reverse=True)[:3])  # pick latest 3
     return out
 
 def gather_stuff(root_user, gh_actor):
     out = {}
 
-    # CLONE_DIR = os.path.join(ROOT_USER, '..', '__clone_dir')
     CLONE_DIR = os.path.abspath(os.path.join(root_user, '..', '__clone_dir'))
     print(f"DEBUG: repr(CLONE_DIR): {repr(CLONE_DIR)}")
     

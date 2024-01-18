@@ -38,9 +38,8 @@ runs:
         IPT__credit: ${{ inputs.credit }}
 
     ## Save (committing)
-    # - run: |
-    #     git config user.name "${{ inputs.gitname }}"
-    #     git config user.email "${{ inputs.gitemail }}"
-    #     # git commit -am "Lineosaurus on $(date +'%Y %b %e, %l:%M %p')"
-    #     git commit -am "Lineosaurus on $(date -u +'%Y %b %-d, %l:%M %p utc%:z')"
-    #     git push
+    - run: |
+        git config user.name "${{ inputs.gitname }}"
+        git config user.email "${{ inputs.gitemail }}"
+        git commit -am "Lineosaurus on $(date -u +'%Y %b %-d, %l:%M %p utc%:z')"
+        git push

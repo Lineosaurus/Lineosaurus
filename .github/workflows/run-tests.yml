@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - '*'
-    # paths:
-    #   - 'src/**'
-    #   - 'flavors/**'
   pull_request:
     types:
       - opened
@@ -14,18 +11,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  # run:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-python@v4
-  #       with:
-  #         python-version: '3.10' 
-  #     - run: pip install -r requirements.txt
-  #     - run: python -m unittest -v
-
-  foo:
+  run:
     runs-on: ubuntu-latest
+    # permissions: { contents: write }  # for committing  # NOTE: for testing purposes, comment out this line to not really make the commit.
     steps:
       - uses: lineosaurus/lineosaurus@main
         env:
@@ -37,4 +25,44 @@ jobs:
           gitname: foo
           gitemail: bar
           credit: true
+  
+  test_default:  # just use the required args
+    runs-on: ubuntu-latest
+    # permissions: { contents: write }  # for committing  # NOTE: for testing purposes, comment out this line to not really make the commit.
+    steps:
+      - uses: lineosaurus/lineosaurus@main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        with:
+          nickname: Hello Great
+          gitname: foo
+          gitemail: bar
 
+  run3:
+    runs-on: ubuntu-latest
+    # permissions: { contents: write }  # for committing  # NOTE: for testing purposes, comment out this line to not really make the commit.
+    steps:
+      - uses: lineosaurus/lineosaurus@main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        with:
+          nickname: Hello Great
+          banner: ./woow.jpg
+          include_last_activity: false
+          gitname: foo
+          gitemail: bar
+          credit: false
+  
+  no_banner:
+    runs-on: ubuntu-latest
+    # permissions: { contents: write }  # for committing  # NOTE: for testing purposes, comment out this line to not really make the commit.
+    steps:
+      - uses: lineosaurus/lineosaurus@main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        with:
+          nickname: Hello Great
+          include_last_activity: false
+          gitname: foo
+          gitemail: bar
+          credit: true

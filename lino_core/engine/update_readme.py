@@ -1,7 +1,6 @@
 import random
 from datetime import datetime
 
-
 def get_header(day):
     l = [
         f"Wish you an awesome {day}! 🌼",
@@ -17,38 +16,23 @@ def get_header(day):
     ]
     return random.choice(l)
 
-def LOC_formatter(lines_of_code:int):
-    pass  # 1000 -> 1K, 1234 -> 1.2K, 999->999, etc.
-    ## but, it seems not that readable, so aborted...
-
 def update_readme(
     banner_pth:str|None,
     gh_actor:str,
-    lines_of_code:int, nCommits:int, nChars:int,
-    include_last_activity:bool, last_acts:dict,  # last_acts is {repo-name: last-commit-timestamp, ...}
+    
+    lines_of_code:int,
+    nCommits:int,
+    nChars:int,
+    
+    include_last_activity:bool,
+    last_acts:dict,  # {owner/repo-name: last-commit-timestamp, ...}
+    
     nickname:str,
     nCommits_last_week:int,
     lino_ver:str,
     readme_pth:str,
     include_credit:bool
-):
-    
-#     text = """
-# Hey there! Have a great Thursday! 🌈
-
-# ![banner](https://github.com/nvfp/nvfp/raw/main/assets/banner.jpg)
-
-# nvfp's repos (73,099 lines of code, 3,990 commits, 18,470,386 chars)
-
-# ```python
-# Repos I was working on lately: nvfp/nvfp.github.io (on Monday, Mar 3, 2024, 2:31PM utc+0), nvfp/nvfp.github.io (on Monday, Mar 3, 2024, 2:31PM utc+0), nvfp/nvfp.github.io (on Monday, Mar 3, 2024, 2:31PM utc+0)
-# ```
-
-# NVfp made 3 commits in the last week, what an awesome!
-
-# <sub>last update: 2024 Jan 18 - Counted by [Lineosaurus(1.1)](https://github.com/Lineosaurus/Lineosaurus)</sub>
-# """
-
+):    
     text = get_header(datetime.now().astimezone().strftime('%A')) + '\n\n'
 
     if banner_pth is not None:
@@ -61,7 +45,6 @@ def update_readme(
         for name, ts in last_acts.items():
             d1 = datetime.fromtimestamp(ts).astimezone().strftime(random.choice(['%a, %b %-d, %Y, ', '%A, ', '%B %-d, ']))
             d2 = datetime.fromtimestamp(ts).astimezone().strftime(f"%I:%M%p{random.choice([' utc%z', ''])}").lstrip('0')
-            # act_list.append(f"{name} ({datetime.fromtimestamp(ts).astimezone().strftime('%A, %b %d, %Y, %I:%M%p utc%z')})")
             act_list.append(f"{random.choice([name, name[len(gh_actor)+1:]])}[{d1+d2}]")
         text += (
             "```python\n"
@@ -71,16 +54,10 @@ def update_readme(
     
     text += (
         f"{nickname} made {nCommits_last_week} commits in the last week, "
-        # f"{random.choice(['what an awesome!', 'really great!', 'simply amazing!'])}"
         + random.choice(['what an awesome!', 'really great!', 'simply amazing!', 'incredibly impressive!'])
         + '\n\n'
     )
 
-    # text += (
-    #     f"<sub>last update: {datetime.now().astimezone().strftime(random.choice(['%Y %b %-d', '%Y %B %-d', '%b %-d, %Y']))} - "
-    #     f"Counted by [Lineosaurus({lino_ver})](https://github.com/Lineosaurus/Lineosaurus)</sub>"
-    # )
-    ## vvvvv
     if include_credit:
         text += (
             f"<sub>last update: {datetime.now().astimezone().strftime(random.choice(['%Y %b %-d', '%Y %B %-d', '%b %-d, %Y']))} - "
