@@ -63,7 +63,7 @@ def update_readme(
     text += (
         f"{nickname} made {nCommits_last_week} commits in the last week, "
         + random.choice(['what an awesome!', 'really great!', 'simply amazing!', 'incredibly impressive!', 'wonderful!', 'impressive!'])
-        # + '\n\n'  # no need (make the credit inline with this line)
+        + '\n\n'  # no need (make the credit inline with this line)
     )
 
     footer_time = datetime.now().astimezone().strftime(random.choice(['%Y %b %-d', '%Y %B %-d', '%b %-d, %Y']))
