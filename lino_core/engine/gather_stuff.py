@@ -98,6 +98,7 @@ def get_last_acts(CLONE_DIR, gh_actor):  # get last 3 activities
         result = subprocess.check_output(['git', 'log', '-1', '--format=%cd'], stderr=subprocess.STDOUT, text=True, cwd=pth)
         print(f"DEBUG: last commit at ({repo}): {repr(result)}")
         in_utc_timestamp = int(datetime.strptime(result.strip('\n'), "%a %b %d %H:%M:%S %Y %z").timestamp())
+        if repo == gh_actor: continue  # exclude the github.com/NAME/NAME repo
         out[f"{gh_actor}/{repo}"] = in_utc_timestamp
     out = dict(sorted(out.items(), key=lambda x: x[1], reverse=True)[:3])  # pick latest 3
     return out
