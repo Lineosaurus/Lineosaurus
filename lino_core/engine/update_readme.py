@@ -67,11 +67,11 @@ def update_readme(
     footer_time = datetime.now().astimezone().strftime(random.choice(['%Y %b %-d', '%Y %B %-d', '%b %-d, %Y']))
     if include_credit:
         text += (
-            f"""<sub align="right">last update: {footer_time} - """
+            f""" <sub align="right">last update: {footer_time} - """
             f"Counted by [Lineosaurus({lino_ver})](https://github.com/Lineosaurus/Lineosaurus)</sub>"
         )
     else:
-        text += f"<sub>last update: {footer_time}</sub>"
+        text += f""" <sub align="right">last update: {footer_time}</sub>"""
 
     print('─'*100)
     print(text)
