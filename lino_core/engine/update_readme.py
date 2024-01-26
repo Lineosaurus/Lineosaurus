@@ -63,17 +63,27 @@ def update_readme(
     text += (
         f"{nickname} made {nCommits_last_week} commits in the last week, "
         + random.choice(['what an awesome!', 'really great!', 'simply amazing!', 'incredibly impressive!', 'wonderful!', 'impressive!'])
-        + '\n\n'  # no need (make the credit inline with this line)
+        # + '\n\n'  # no need (make the credit inline with this line)
     )
 
     footer_time = datetime.now().astimezone().strftime(random.choice(['%Y %b %-d', '%Y %B %-d', '%b %-d, %Y']))
     if include_credit:
         text += (
-            f""" <sub align="right">last update: {footer_time} - """
+            # f""" <sub align="right">last update: {footer_time} - """
+            ## vvvvvvvvvvvvvvv the above one didnt work
+            f""" <sub style="text-align: right;">last update: {footer_time} - """
             f"{random.choice(['Counted by', 'By', '❤️'])} [Lineosaurus({lino_ver})](https://github.com/Lineosaurus/Lineosaurus)</sub>"
         )
     else:
-        text += f""" <sub align="right">last update: {footer_time}</sub>"""
+        # text += f""" <sub align="right">last update: {footer_time}</sub>"""
+        ## vvvvvvvvvvvvvvv the above one didnt work
+        text += f""" <sub style="text-align: right;">last update: {footer_time}</sub>"""
+    ## vvvvvv now commits last week and footer get merged
+    # text += (
+    #     '<div>'
+    #         '<p></p>'
+    #     '</div>'
+    # )
 
     print('─'*100)
     print(text)
