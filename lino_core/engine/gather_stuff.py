@@ -25,7 +25,7 @@ def clone(gh_actor, CLONE_DIR):
     urls = [
         i['url']+'.git'
         for i in json.loads(
-            subprocess.run(f"gh repo list {gh_actor} --visibility public --json url", stdout=subprocess.PIPE, shell=True, text=True).stdout
+            subprocess.run(f"gh repo list {gh_actor} --visibility public --json url --limit 99999", stdout=subprocess.PIPE, shell=True, text=True).stdout
         )
     ]
     print(f"INFO: #urls: {len(urls)}")

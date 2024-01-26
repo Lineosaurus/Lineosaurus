@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions: { contents: write }  # for committing
     steps:
-      - uses: Lineosaurus/Lineosaurus@X.X.X  # EDITME: choose the version you prefer, the latest version is recommended.
+      - uses: Lineosaurus/Lineosaurus@v2
         env:
           GH_TOKEN: ${{ github.token }}  # for GitHub CLI
         with:  # v EDIT THESE v
@@ -33,6 +33,8 @@ jobs:
 Second, change the value marked with "EDITME" to yours. Also, it's okay to change the file name too, it has no effect.
 
 Learn more about [params' desc here](https://github.com/Lineosaurus/Lineosaurus/blob/main/action.yml).
+
+> Note: choose the version you prefer, the latest version is recommended.
 
 And that's it! it will update your README.md once a day with your GitHub stats.
 
