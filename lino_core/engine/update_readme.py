@@ -13,6 +13,8 @@ def get_header(day):
         f"Keep shining on this {day}! 🌷",
         f"Have a great {day}!",
         f"This {day} is awesome!",
+        f"Happy {day}!",
+        f"What a cool {day}!",
     ]
     return random.choice(l)
 
@@ -68,7 +70,7 @@ def update_readme(
     if include_credit:
         text += (
             f""" <sub align="right">last update: {footer_time} - """
-            f"Counted by [Lineosaurus({lino_ver})](https://github.com/Lineosaurus/Lineosaurus)</sub>"
+            f"{random.choice(['Counted by', 'By', '❤️'])} [Lineosaurus({lino_ver})](https://github.com/Lineosaurus/Lineosaurus)</sub>"
         )
     else:
         text += f""" <sub align="right">last update: {footer_time}</sub>"""
