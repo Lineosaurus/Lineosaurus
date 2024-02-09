@@ -82,9 +82,10 @@ def get_nChars(CLONE_DIR):
         print(f"DEBUG: nChars ({repo}): {k2}")
     return k
 
-def get_nCommits_last_week(CLONE_DIR):
+def get_nCommits_last_week(CLONE_DIR, ghActor):
     k = 0
     for repo in os.listdir(CLONE_DIR):
+        if repo == ghActor: print(f"DEBUG: Skip the github.com/name/name repo: {repr(repo)}.");continue
         pth = os.path.join(CLONE_DIR, repo)
         k2 = int(subprocess.run(['git', 'rev-list', '--count', '--since="1 week ago"', 'HEAD'], stdout=subprocess.PIPE, text=True, check=True, cwd=pth).stdout.strip())
         k += k2
@@ -120,7 +121,7 @@ def gather_stuff(root_user, gh_actor):
     out['lines_of_code'] = get_lines_of_code(CLONE_DIR)
     out['nCommits'] = get_nCommits(CLONE_DIR)
     out['nChars'] = get_nChars(CLONE_DIR)
-    out['nCommits_last_week'] = get_nCommits_last_week(CLONE_DIR)
+    out['nCommits_last_week'] = get_nCommits_last_week(CLONE_DIR, gh_actor)
     out['last_acts'] = get_last_acts(CLONE_DIR, gh_actor)
 
     return out
