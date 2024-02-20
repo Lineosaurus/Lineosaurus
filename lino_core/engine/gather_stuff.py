@@ -54,15 +54,6 @@ def get_lines_of_code(CLONE_DIR):
         print(f"DEBUG: lines of code ({repo}): {k2}")
     return k
 
-def get_nCommits(CLONE_DIR):
-    k = 0
-    for repo in os.listdir(CLONE_DIR):
-        pth = os.path.join(CLONE_DIR, repo)
-        k2 = int(subprocess.run(['git', 'rev-list', '--count', 'HEAD'], cwd=pth, stdout=subprocess.PIPE, text=True, check=True).stdout.strip())
-        k += k2
-        print(f"DEBUG: nCommits ({repo}): {k2}")
-    return k
-
 def get_nChars(CLONE_DIR):
     k = 0
     def the_recursive(dir_pth):
@@ -92,17 +83,61 @@ def get_nCommits_last_week(CLONE_DIR, ghActor):
         print(f"DEBUG: nCommits_last_week ({repo}): {k2}")
     return k
 
-def get_last_acts(CLONE_DIR, gh_actor):  # get last 3 activities
-    out = {}
+def get_last_act(CLONE_DIR, gh_actor):  # get the last activity
+    out = []  # [[name, timestamp], ...]
     for repo in os.listdir(CLONE_DIR):
         pth = os.path.join(CLONE_DIR, repo)
         result = subprocess.check_output(['git', 'log', '-1', '--format=%cd'], stderr=subprocess.STDOUT, text=True, cwd=pth)
         print(f"DEBUG: last commit at ({repo}): {repr(result)}")
-        in_utc_timestamp = int(datetime.strptime(result.strip('\n'), "%a %b %d %H:%M:%S %Y %z").timestamp())
+        in_utc_timestamp = float(datetime.strptime(result.strip('\n'), "%a %b %d %H:%M:%S %Y %z").timestamp())
         if repo == gh_actor: continue  # exclude the github.com/NAME/NAME repo
-        out[f"{gh_actor}/{repo}"] = in_utc_timestamp
-    out = dict(sorted(out.items(), key=lambda x: x[1], reverse=True)[:3])  # pick latest 3
+        out.append([f"{gh_actor}/{repo}", in_utc_timestamp])
+    out = sorted(out, key=lambda x: x[1])  # sort from low->high (the last item is the latest)
+    out = out[-1]  # pick the latest
+    def get_lang_info(reponame):
+        print(f"INFO: Analyzing repo {repr(reponame)}.")
+        convert = {
+            '.py': 'Python',
+            '.js': 'JavaScript',
+            '.html': 'HTML',
+            '.css': 'CSS',
+            '.java': 'Java',
+            '.cpp': 'C++',
+            '.c': 'C',
+            '.php': 'PHP',
+            '.rb': 'Ruby',
+            '.swift': 'Swift',
+            '.rs': 'Rust',
+            '.go': 'Go',
+            
+            '-': 'N/A',  # handle the unknown-case
+        }
+        class Runtime:
+            types = {}
+        root = os.path.join(CLONE_DIR, reponame)
+        def recursive(dirpth):
+            print(f"~> Inside {repr(dirpth)}...")
+            for stuff in os.listdir(dirpth):
+                stuffpth = os.path.join(dirpth, stuff)
+                if os.path.isfile(stuffpth):
+                    typee = os.path.splitext(stuff)[1].lower()  # mix them by lowercasing.
+                    if typee in Runtime.types: Runtime.types[typee] += os.path.getsize(stuffpth)
+                    else: Runtime.types[typee] = os.path.getsize(stuffpth)
+                elif os.path.isdir(stuffpth): recursive(stuffpth)
+                else: print(f"WARNING: Not a file/dir: {repr(stuffpth)}.")
+        recursive(root)
+        Runtime.types = [(k,v) for k,v in Runtime.types.items()]  # convert to list
+        Runtime.types = sorted(Runtime.types, key=lambda x: x[1], reverse=True)  # sort high to low
+        Runtime.types.append(['-',0])  # handle the unknown-case
+        for typ in Runtime.types:
+            if typ[0] in convert:
+                return convert[typ[0]]
+                break  # match the highest one.
+    out = [out[0], out[1], get_lang_info(out[0].split('/')[1])]
     return out
+
+def get_nRepos(CLONE_DIR):  # number of repos
+    return len(os.listdir(CLONE_DIR))
 
 def gather_stuff(root_user, gh_actor):
     out = {}
@@ -119,9 +154,9 @@ def gather_stuff(root_user, gh_actor):
     print(f"DEBUG: os.listdir(CLONE_DIR): {os.listdir(CLONE_DIR)}")
 
     out['lines_of_code'] = get_lines_of_code(CLONE_DIR)
-    out['nCommits'] = get_nCommits(CLONE_DIR)
     out['nChars'] = get_nChars(CLONE_DIR)
     out['nCommits_last_week'] = get_nCommits_last_week(CLONE_DIR, gh_actor)
-    out['last_acts'] = get_last_acts(CLONE_DIR, gh_actor)
+    out['last_act'] = get_last_act(CLONE_DIR, gh_actor)
+    out['nRepos'] = get_nRepos(CLONE_DIR, gh_actor)
 
     return out
