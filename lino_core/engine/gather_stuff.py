@@ -101,6 +101,7 @@ def get_last_act(CLONE_DIR, gh_actor):  # get the last activity
             '.js': 'JavaScript',
             '.html': 'HTML',
             '.css': 'CSS',
+            '.scss': 'SCSS',
             '.java': 'Java',
             '.cpp': 'C++',
             '.c': 'C',
