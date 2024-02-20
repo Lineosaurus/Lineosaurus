@@ -1,4 +1,4 @@
-import random, time
+import random
 from datetime import datetime
 
 def get_header(day):
@@ -15,7 +15,9 @@ def get_header(day):
         f"This {day} is awesome!",
         f"Happy {day}!",
         f"What a cool {day}!",
+        f"Great {day}! You are awesome 💐",
     ]
+    if len(l) != len(set(l)): raise AssertionError  # just in case there are duplicates
     return random.choice(l)
 
 def update_readme(
@@ -23,42 +25,37 @@ def update_readme(
     gh_actor:str,
     
     lines_of_code:int,
-    nCommits:int,
     nChars:int,
     
     include_last_activity:bool,
-    last_acts:dict,  # {owner/repo-name: last-commit-timestamp, ...}
+    last_act:list,  # [repo-name, its-last-commit-timestamp, progLanguage-info]
     
     nickname:str,
     nCommits_last_week:int,
     lino_ver:str,
     readme_pth:str,
-    include_credit:bool
+    include_credit:bool,
+
+    nRepos:int,  # number of repos
 ):    
-    text = get_header(datetime.now().astimezone().strftime('%A')) + '\n\n'
+    text = get_header(datetime.now().strftime('%A')) + '\n\n'
 
     if banner_pth is not None:
         text += f"![banner]({banner_pth})\n\n"
 
-    text += f"{gh_actor}'s repos ({lines_of_code:,} lines of code, {nCommits:,} commits, {nChars:,} chars)\n\n"
+    text += f"There are {lines_of_code:,} lines of code and {nChars:,} characters across {nRepos:,} {gh_actor}'s repositories.\n\n"
 
     if include_last_activity:
-        act_list = []
-        for name, ts in last_acts.items():
-            d1 = datetime.fromtimestamp(ts).astimezone().strftime(random.choice(['%a, %b %-d, %Y', '%b %-d', '%b %-d', '%A', '%B %-d']))  # prioritize the concise one (note, yes the "'%b %-d'" is doubled)
-            d2 = ', ' + datetime.fromtimestamp(ts).astimezone().strftime(f"%I:%M%p{random.choice([' utc%z',''])}").lstrip('0')
-            act_list.append(f"{random.choice([name, name[len(gh_actor)+1:]])}[{d1+random.choice([d2, ''])}]")
-            time.sleep(0.1)  # to make the "randomizer" truly random. idk, if it's really working or not.
         text += (
-            "```python\n"
-            f"Repos I was working on lately:\n→ {', '.join(act_list)}\n"
+            "```txt\n"
+            f"Last repo I worked on is {last_act[0]} ({datetime.fromtimestamp(last_act[1]).strftime(random.choice(['%b %-d, %Y', '%A, %b %-d', '%a, %B %-d']))}), and it's {last_act[2]}!\n"
             "```\n\n"
         )
     
     ## Commits last week
     text += (
         f"{nickname} made {nCommits_last_week} commits in the last week, "
-        + random.choice(['what an awesome!', 'really great!', 'simply amazing!', 'incredibly impressive!', 'wonderful!', 'impressive!'])
+        + random.choice(['what an awesome!', 'really great!', 'simply amazing!', 'incredibly cool!', 'wonderful!', 'awesome!'])
     )
     footer_time = datetime.now().astimezone().strftime(random.choice(['%Y %b %-d', '%Y %B %-d', '%b %-d, %Y']))
     if include_credit:
@@ -69,11 +66,9 @@ def update_readme(
     else:
         text += f"<sub> ~ last update: {footer_time}</sub>"
 
-    print('─'*100)
-    print(text)
-    print('─'*100)
+    print('─'*100 + '\n' + text + '\n' + '─'*100)
 
     ## save
-    print(f"INFO: Rewriting: >> {repr(readme_pth)} <<.")
+    print(f"INFO: Rewriting: {repr(readme_pth)}.")
     with open(readme_pth, 'w') as f:
         f.write(text)

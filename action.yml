@@ -7,7 +7,7 @@ inputs:
     required: false
     default: null  # Note, `null` will be evaluated to an empty string by Python
   include_last_activity:
-    description: s
+    description: Show the last repository you worked on.
     required: false
     default: true  # will be evaluated to a string 'false', not `True` / `False`
   gitname:
@@ -17,7 +17,7 @@ inputs:
     description: Git email (for committing)
     required: true
   credit:
-    description: Add a line to display credit to Lino at the end of the README
+    description: Add this project repository URL at the end.
     required: false
     default: false
 
