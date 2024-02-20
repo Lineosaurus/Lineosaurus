@@ -48,7 +48,7 @@ def update_readme(
     if include_last_activity:
         text += (
             "```txt\n"
-            f"Last repo I worked on is {last_act[0]} ({datetime.fromtimestamp(last_act[1]).strftime(random(['%b %-d, %Y', '%A, %b %-d', '%a, %B %-d']))}), and it's {last_act[2]}!\n"
+            f"Last repo I worked on is {last_act[0]} ({datetime.fromtimestamp(last_act[1]).strftime(random.choice(['%b %-d, %Y', '%A, %b %-d', '%a, %B %-d']))}), and it's {last_act[2]}!\n"
             "```\n\n"
         )
     
