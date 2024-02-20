@@ -127,10 +127,10 @@ def get_last_act(CLONE_DIR, gh_actor):  # get the last activity
                 elif os.path.isdir(stuffpth): recursive(stuffpth)
                 else: print(f"WARNING: Not a file/dir: {repr(stuffpth)}.")
         recursive(root)
-        print(f"DEBUG: Runtime.types: {Runtime.types}")
         Runtime.types = [(k,v) for k,v in Runtime.types.items()]  # convert to list
         Runtime.types = sorted(Runtime.types, key=lambda x: x[1], reverse=True)  # sort high to low
         Runtime.types.append(['-',0])  # handle the unknown-case
+        print(f"DEBUG: Runtime.types: {Runtime.types}")
         for typ in Runtime.types:
             if typ[0] in convert:
                 return convert[typ[0]]
