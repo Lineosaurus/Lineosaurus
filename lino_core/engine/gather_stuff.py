@@ -117,6 +117,7 @@ def get_last_act(CLONE_DIR, gh_actor):  # get the last activity
         root = os.path.join(CLONE_DIR, reponame)
         def recursive(dirpth):
             print(f"~> Inside {repr(dirpth)}...")
+            if os.path.basename(dirpth) in ['.git', '__pycache__']: print(f"~> SKIPPED: {repr(dirpth)}");return
             for stuff in os.listdir(dirpth):
                 stuffpth = os.path.join(dirpth, stuff)
                 if os.path.isfile(stuffpth):
@@ -126,6 +127,7 @@ def get_last_act(CLONE_DIR, gh_actor):  # get the last activity
                 elif os.path.isdir(stuffpth): recursive(stuffpth)
                 else: print(f"WARNING: Not a file/dir: {repr(stuffpth)}.")
         recursive(root)
+        print(f"DEBUG: Runtime.types: {Runtime.types}")
         Runtime.types = [(k,v) for k,v in Runtime.types.items()]  # convert to list
         Runtime.types = sorted(Runtime.types, key=lambda x: x[1], reverse=True)  # sort high to low
         Runtime.types.append(['-',0])  # handle the unknown-case
@@ -134,6 +136,7 @@ def get_last_act(CLONE_DIR, gh_actor):  # get the last activity
                 return convert[typ[0]]
                 break  # match the highest one.
     out = [out[0], out[1], get_lang_info(out[0].split('/')[1])]
+    print(f"DEBUG: last-act: out: {out}")
     return out
 
 def get_nRepos(CLONE_DIR):  # number of repos
@@ -157,6 +160,6 @@ def gather_stuff(root_user, gh_actor):
     out['nChars'] = get_nChars(CLONE_DIR)
     out['nCommits_last_week'] = get_nCommits_last_week(CLONE_DIR, gh_actor)
     out['last_act'] = get_last_act(CLONE_DIR, gh_actor)
-    out['nRepos'] = get_nRepos(CLONE_DIR, gh_actor)
+    out['nRepos'] = get_nRepos(CLONE_DIR)
 
     return out
