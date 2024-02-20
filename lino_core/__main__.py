@@ -41,7 +41,7 @@ def main():
         readme_pth=os.path.join(misc['root_user'], 'README.md'),
         include_credit=ipts['credit'],
         
-        nRepos=ipts['nRepos'],
+        nRepos=needed['nRepos'],
     )
 
 if __name__ == '__main__':
