@@ -34,7 +34,7 @@ Learn more about the [options here](https://github.com/Lineosaurus/Lineosaurus/b
 
 > Note: The latest version is recommended
 
-That's it! it will update once a day with your GitHub stats.
+That's it! it will update once a day! 🎉
 
 ## Notes
 
@@ -42,4 +42,4 @@ That's it! it will update once a day with your GitHub stats.
 
 ## License
 
-MIT License. Everyone is welcome.
+MIT License.

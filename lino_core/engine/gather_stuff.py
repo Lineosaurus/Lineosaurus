@@ -94,54 +94,8 @@ def get_last_act(CLONE_DIR, gh_actor):  # get the last activity
         out.append([f"{gh_actor}/{repo}", in_utc_timestamp])
     out = sorted(out, key=lambda x: x[1])  # sort from low->high (the last item is the latest)
     out = out[-1]  # pick the latest
-    def get_lang_info(reponame):
-        print(f"INFO: Analyzing repo {repr(reponame)}.")
-        convert = {
-            '.py': 'Python',
-            '.js': 'JavaScript',
-            '.html': 'HTML',
-            '.css': 'CSS',
-            '.scss': 'SCSS',
-            '.java': 'Java',
-            '.cpp': 'C++',
-            '.c': 'C',
-            '.php': 'PHP',
-            '.rb': 'Ruby',
-            '.swift': 'Swift',
-            '.rs': 'Rust',
-            '.go': 'Go',
-            
-            '-': 'N/A',  # handle the unknown-case
-        }
-        class Runtime:
-            types = {}
-        root = os.path.join(CLONE_DIR, reponame)
-        def recursive(dirpth):
-            print(f"~> Inside {repr(dirpth)}...")
-            if os.path.basename(dirpth) in ['.git', '__pycache__']: print(f"~> SKIPPED: {repr(dirpth)}");return
-            for stuff in os.listdir(dirpth):
-                stuffpth = os.path.join(dirpth, stuff)
-                if os.path.isfile(stuffpth):
-                    typee = os.path.splitext(stuff)[1].lower()  # mix them by lowercasing.
-                    if typee in Runtime.types: Runtime.types[typee] += os.path.getsize(stuffpth)
-                    else: Runtime.types[typee] = os.path.getsize(stuffpth)
-                elif os.path.isdir(stuffpth): recursive(stuffpth)
-                else: print(f"WARNING: Not a file/dir: {repr(stuffpth)}.")
-        recursive(root)
-        Runtime.types = [(k,v) for k,v in Runtime.types.items()]  # convert to list
-        Runtime.types = sorted(Runtime.types, key=lambda x: x[1], reverse=True)  # sort high to low
-        Runtime.types.append(['-',0])  # handle the unknown-case
-        print(f"DEBUG: Runtime.types: {Runtime.types}")
-        for typ in Runtime.types:
-            if typ[0] in convert:
-                return convert[typ[0]]
-                break  # match the highest one.
-    out = [out[0], out[1], get_lang_info(out[0].split('/')[1])]
     print(f"DEBUG: last-act: out: {out}")
     return out
-
-def get_nRepos(CLONE_DIR):  # number of repos
-    return len(os.listdir(CLONE_DIR))
 
 def gather_stuff(root_user, gh_actor):
     out = {}
@@ -161,6 +115,5 @@ def gather_stuff(root_user, gh_actor):
     out['nChars'] = get_nChars(CLONE_DIR)
     out['nCommits_last_week'] = get_nCommits_last_week(CLONE_DIR, gh_actor)
     out['last_act'] = get_last_act(CLONE_DIR, gh_actor)
-    out['nRepos'] = get_nRepos(CLONE_DIR)
 
     return out
