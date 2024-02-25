@@ -44,7 +44,7 @@ def update_readme(
     text += f"{lines_of_code:,} lines of code and {nChars:,} chars across {gh_actor}'s repos.\n\n"
 
     if include_last_activity:
-        text += f"*Last repo I worked on is `{last_act[0]}` ({datetime.fromtimestamp(last_act[1]).strftime(random.choice(['%b %-d, %Y', '%A, %b %-d', '%a, %B %-d']))}).*\n\n"
+        text += f"*Last repo I worked on is `{last_act[0]}` ({datetime.fromtimestamp(last_act[1]).strftime(random.choice(['%b %-d, %Y', '%A, %b %-d', '%a, %B %-d']))})*\n\n"
     
     ## Commits last week
     text += (
