@@ -35,18 +35,16 @@ def update_readme(
     lino_ver:str,
     readme_pth:str,
     include_credit:bool,
-
-    nRepos:int,  # number of repos
 ):    
     text = get_header(datetime.now().strftime('%A')) + '\n\n'
 
     if banner_pth is not None:
         text += f"![banner]({banner_pth})\n\n"
 
-    text += f"There are {lines_of_code:,} lines of code and {nChars:,} characters across {nRepos:,} {gh_actor}'s repositories.\n\n"
+    text += f"{lines_of_code:,} lines of code and {nChars:,} chars across {gh_actor}'s repos.\n\n"
 
     if include_last_activity:
-        text += f"*Last repo I worked on is `{last_act[0]}` ({datetime.fromtimestamp(last_act[1]).strftime(random.choice(['%b %-d, %Y', '%A, %b %-d', '%a, %B %-d']))}), and it's {last_act[2]}!*\n\n"
+        text += f"*Last repo I worked on is `{last_act[0]}` ({datetime.fromtimestamp(last_act[1]).strftime(random.choice(['%b %-d, %Y', '%A, %b %-d', '%a, %B %-d']))})*\n\n"
     
     ## Commits last week
     text += (

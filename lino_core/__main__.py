@@ -40,8 +40,6 @@ def main():
         lino_ver=misc['act_ver'],
         readme_pth=os.path.join(misc['root_user'], 'README.md'),
         include_credit=ipts['credit'],
-        
-        nRepos=needed['nRepos'],
     )
 
 if __name__ == '__main__':
