@@ -21,8 +21,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         with:
           nickname: Hello Great
-          banner: ./woow.jpg
-          include_last_activity: true
+          banner1: ./woow.jpg
           gitname: foo
           gitemail: bar
           credit: true
@@ -31,51 +30,10 @@ jobs:
     runs-on: ubuntu-latest
     # permissions: { contents: write }  # for committing  # NOTE: for testing purposes, comment out this line to not really make the commit.
     steps:
-      - uses: lineosaurus/lineosaurus@up  # EDITME
+      - uses: lineosaurus/lineosaurus@new_updates_branch
         env:
           GH_TOKEN: ${{ github.token }}
         with:
           nickname: Hello Great
           gitname: foo
           gitemail: bar
-  
-  test_default:  # just use the required args
-    runs-on: ubuntu-latest
-    # permissions: { contents: write }  # for committing  # NOTE: for testing purposes, comment out this line to not really make the commit.
-    steps:
-      - uses: lineosaurus/lineosaurus@main
-        env:
-          GH_TOKEN: ${{ github.token }}
-        with:
-          nickname: Hello Great
-          gitname: foo
-          gitemail: bar
-
-  run3:
-    runs-on: ubuntu-latest
-    # permissions: { contents: write }  # for committing  # NOTE: for testing purposes, comment out this line to not really make the commit.
-    steps:
-      - uses: lineosaurus/lineosaurus@main
-        env:
-          GH_TOKEN: ${{ github.token }}
-        with:
-          nickname: Hello Great
-          banner: ./woow.jpg
-          include_last_activity: false
-          gitname: foo
-          gitemail: bar
-          credit: false
-  
-  no_banner:
-    runs-on: ubuntu-latest
-    # permissions: { contents: write }  # for committing  # NOTE: for testing purposes, comment out this line to not really make the commit.
-    steps:
-      - uses: lineosaurus/lineosaurus@main
-        env:
-          GH_TOKEN: ${{ github.token }}
-        with:
-          nickname: Hello Great
-          include_last_activity: false
-          gitname: foo
-          gitemail: bar
-          credit: true
