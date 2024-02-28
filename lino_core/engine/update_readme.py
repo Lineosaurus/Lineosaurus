@@ -21,14 +21,12 @@ def get_header(day):
     return random.choice(l)
 
 def update_readme(
-    banner_pth:str|None,
+    banner_pth1:str|None,
+    banner_pth2:str|None,
     gh_actor:str,
     
     lines_of_code:int,
     nChars:int,
-    
-    include_last_activity:bool,
-    last_act:list,  # [repo-name, its-last-commit-timestamp, progLanguage-info]
     
     nickname:str,
     nCommits_last_week:int,
@@ -38,14 +36,15 @@ def update_readme(
 ):    
     text = get_header(datetime.now().strftime('%A')) + '\n\n'
 
-    if banner_pth is not None:
-        text += f"![banner]({banner_pth})\n\n"
+    banners = []
+    if banner_pth1 is not None: banners.append(banner_pth1)
+    if banner_pth2 is not None: banners.append(banner_pth2)
+    # if banners != []:
+    if len(banners) != 0:
+        text += f"![banner]({random.choice(banners)})\n\n"
 
     text += f"{lines_of_code:,} lines of code and {nChars:,} chars across {gh_actor}'s repos.\n\n"
 
-    if include_last_activity:
-        text += f"*Last repo I worked on is `{last_act[0]}` ({datetime.fromtimestamp(last_act[1]).strftime(random.choice(['%b %-d, %Y', '%A, %b %-d', '%a, %B %-d']))})*\n\n"
-    
     ## Commits last week
     text += (
         f"{nickname} made {nCommits_last_week} commits in the last week, "

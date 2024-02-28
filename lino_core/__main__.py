@@ -26,14 +26,12 @@ def main():
         gh_actor=misc['gh_actor'],
     )
     update_readme(
-        banner_pth=ipts['banner'],
+        banner_pth1=ipts['banner1'],
+        banner_pth2=ipts['banner2'],
         gh_actor=misc['gh_actor'],
         
         lines_of_code=needed['lines_of_code'],
         nChars=needed['nChars'],
-        
-        include_last_activity=ipts['include_last_activity'],
-        last_act=needed['last_act'],
         
         nickname=ipts['nickname'],
         nCommits_last_week=needed['nCommits_last_week'],

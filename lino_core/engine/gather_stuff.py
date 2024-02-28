@@ -83,20 +83,6 @@ def get_nCommits_last_week(CLONE_DIR, ghActor):
         print(f"DEBUG: nCommits_last_week ({repo}): {k2}")
     return k
 
-def get_last_act(CLONE_DIR, gh_actor):  # get the last activity
-    out = []  # [[name, timestamp], ...]
-    for repo in os.listdir(CLONE_DIR):
-        pth = os.path.join(CLONE_DIR, repo)
-        result = subprocess.check_output(['git', 'log', '-1', '--format=%cd'], stderr=subprocess.STDOUT, text=True, cwd=pth)
-        print(f"DEBUG: last commit at ({repo}): {repr(result)}")
-        in_utc_timestamp = float(datetime.strptime(result.strip('\n'), "%a %b %d %H:%M:%S %Y %z").timestamp())
-        if repo == gh_actor: continue  # exclude the github.com/NAME/NAME repo
-        out.append([f"{gh_actor}/{repo}", in_utc_timestamp])
-    out = sorted(out, key=lambda x: x[1])  # sort from low->high (the last item is the latest)
-    out = out[-1]  # pick the latest
-    print(f"DEBUG: last-act: out: {out}")
-    return out
-
 def gather_stuff(root_user, gh_actor):
     out = {}
 
@@ -114,6 +100,5 @@ def gather_stuff(root_user, gh_actor):
     out['lines_of_code'] = get_lines_of_code(CLONE_DIR)
     out['nChars'] = get_nChars(CLONE_DIR)
     out['nCommits_last_week'] = get_nCommits_last_week(CLONE_DIR, gh_actor)
-    out['last_act'] = get_last_act(CLONE_DIR, gh_actor)
 
     return out
