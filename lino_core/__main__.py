@@ -7,8 +7,8 @@ def main():
     
     ipts = {  # inputs
         'nickname': os.environ['IPT__nickname'],
-        'banner': os.environ['IPT__banner'] if (os.environ['IPT__banner'] != '') else None,
-        'include_last_activity': True if (os.environ['IPT__include_last_activity'] == 'true') else False,
+        'banner1': os.environ['IPT__banner1'] if (os.environ['IPT__banner1'] != '') else None,
+        'banner2': os.environ['IPT__banner2'] if (os.environ['IPT__banner2'] != '') else None,
         'credit': True if (os.environ['IPT__credit'] == 'true') else False,
     }
     for k,v in ipts.items(): print(f"DEBUG: (inputs) {k}: {repr(v)}")

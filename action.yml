@@ -2,14 +2,14 @@ inputs:
   nickname:
     description: A name to refer to your name or any name.
     required: true
-  banner:
+  banner1:
     description: can be a rel. path (relative to root) or URL
     required: false
-    default: null  # Note, `null` will be evaluated to an empty string by Python
-  include_last_activity:
-    description: Show the last repository you worked on.
+    default: null
+  banner2:
+    description: can be a rel. path (relative to root) or URL
     required: false
-    default: true  # will be evaluated to a string 'false', not `True` / `False`
+    default: null
   gitname:
     description: Git name (for committing)
     required: true
@@ -33,12 +33,11 @@ runs:
       shell: bash
       env:
         IPT__nickname: ${{ inputs.nickname }}
-        IPT__banner: ${{ inputs.banner }}
-        IPT__include_last_activity: ${{ inputs.include_last_activity }}
+        IPT__banner1: ${{ inputs.banner1 }}
+        IPT__banner2: ${{ inputs.banner2 }}
         IPT__credit: ${{ inputs.credit }}
         ACTION_REF: ${{ github.action_ref }}
 
-    ## Save (committing)
     - run: |
         git config user.name "${{ inputs.gitname }}"
         git config user.email "${{ inputs.gitemail }}"
