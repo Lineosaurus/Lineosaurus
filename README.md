@@ -21,11 +21,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}  # for GitHub CLI
         with:
           nickname: Foo bar
-          banner: ./relpath/to/the/image.jpg  # can also be .png/.jpeg/etc. that supported by GitHub
-          include_last_activity: true
-          gitname: your Git name    # (required)
-          gitemail: your Git email  # (required)
-          credit: false
+          gitname: your Git name
+          gitemail: your Git email
 ```
 
 Next, change the option values.

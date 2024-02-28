@@ -7,8 +7,8 @@ def main():
     
     ipts = {  # inputs
         'nickname': os.environ['IPT__nickname'],
-        'banner': os.environ['IPT__banner'] if (os.environ['IPT__banner'] != '') else None,
-        'include_last_activity': True if (os.environ['IPT__include_last_activity'] == 'true') else False,
+        'banner1': os.environ['IPT__banner1'] if (os.environ['IPT__banner1'] != '') else None,
+        'banner2': os.environ['IPT__banner2'] if (os.environ['IPT__banner2'] != '') else None,
         'credit': True if (os.environ['IPT__credit'] == 'true') else False,
     }
     for k,v in ipts.items(): print(f"DEBUG: (inputs) {k}: {repr(v)}")
@@ -26,14 +26,12 @@ def main():
         gh_actor=misc['gh_actor'],
     )
     update_readme(
-        banner_pth=ipts['banner'],
+        banner_pth1=ipts['banner1'],
+        banner_pth2=ipts['banner2'],
         gh_actor=misc['gh_actor'],
         
         lines_of_code=needed['lines_of_code'],
         nChars=needed['nChars'],
-        
-        include_last_activity=ipts['include_last_activity'],
-        last_act=needed['last_act'],
         
         nickname=ipts['nickname'],
         nCommits_last_week=needed['nCommits_last_week'],
